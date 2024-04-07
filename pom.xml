@@ -13,10 +13,13 @@
         <maven.compiler.target>8</maven.compiler.target>
 
         <junit.version>5.10.2</junit.version>
-        <selenium-java.version>3.141.59</selenium-java.version>
+        <junit-platform-suite-engine.version>1.10.2</junit-platform-suite-engine.version>
+        <selenium-java.version>4.19.1</selenium-java.version>
         <webdrivermanager.version>5.8.0</webdrivermanager.version>
         <javafaker.version>1.0.2</javafaker.version>
         <asserrtj-core.version>3.25.3</asserrtj-core.version>
+        <guice.version>7.0.0</guice.version>
+        <browsermob-core.version>2.1.5</browsermob-core.version>
 
         <maven-surefire-plugin.version>3.2.5</maven-surefire-plugin.version>
 
@@ -39,6 +42,11 @@
             <version>${junit.version}</version>
         </dependency>
         <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-suite-engine</artifactId>
+            <version>${junit-platform-suite-engine.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>${selenium-java.version}</version>
@@ -57,6 +65,16 @@
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
             <version>${asserrtj-core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>${guice.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.lightbody.bmp</groupId>
+            <artifactId>browsermob-core</artifactId>
+            <version>${browsermob-core.version}</version>
         </dependency>
     </dependencies>
 

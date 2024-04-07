@@ -1,15 +1,17 @@
-package factory.impl;
+package ru.otus.factory.impl;
 
-import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.CapabilityType;
 
-public class ChromeSettings implements IWebDriverSettings{
+public class ChromeWebDriver implements IDriver<ChromeOptions> {
     @Override
-    public MutableCapabilities getSettings() {
+    public ChromeOptions getDriverOptions() {
         ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--no-sandbox");
         chromeOptions.addArguments("--no-first-run");
         chromeOptions.addArguments("--homepage=about:blank");
         chromeOptions.addArguments("--ignore-certificate-errors");
+        chromeOptions.setCapability(CapabilityType.BROWSER_NAME, System.getProperty("browser"));
         return chromeOptions;
     }
 }

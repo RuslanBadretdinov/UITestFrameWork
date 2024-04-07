@@ -1,4 +1,4 @@
-package exceptions;
+package ru.otus.exceptions;
 
 public class WebDriverNotSupportedException extends RuntimeException {
     public WebDriverNotSupportedException(String browserName) {

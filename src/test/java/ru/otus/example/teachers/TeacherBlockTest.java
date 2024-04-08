@@ -23,7 +23,8 @@ public class TeacherBlockTest {
     public void openTeacherCardByClick() {
         mainPage.open();
 
-        String name = blockWithItemsComponent.chooseNeededBlockAndSetItemList("Преподаватели")
+        String name = blockWithItemsComponent.
+                chooseNeededBlockAndSetItemList("Преподаватели")
                 .getItemParameterTextByIndex(1, 1);
         blockWithItemsComponent.clickItemByName(name);
 

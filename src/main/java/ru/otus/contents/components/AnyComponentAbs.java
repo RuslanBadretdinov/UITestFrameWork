@@ -36,8 +36,8 @@ public abstract class AnyComponentAbs<T> extends CommonActions<T> {
         return null;
     }
 
-    public T chooseNeededBlockAndSetItemList(String incomingValueForAnnotation) {
-        this.itemList = getComponentEntity(incomingValueForAnnotation).findElements(By.xpath(".//a[./div]"));
+    public T chooseNeededBlockAndSetItemList(String blockName) {
+        this.itemList = getComponentEntity(blockName).findElements(By.xpath(".//a[./div]"));
         return (T) this;
     }
 

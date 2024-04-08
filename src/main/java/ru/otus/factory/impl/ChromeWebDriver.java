@@ -4,6 +4,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.CapabilityType;
 
 public class ChromeWebDriver implements IDriver<ChromeOptions> {
+
     @Override
     public ChromeOptions getDriverOptions() {
         ChromeOptions chromeOptions = new ChromeOptions();

@@ -8,8 +8,8 @@ import ru.otus.driver.utils.CommonActions;
 
 import java.util.List;
 
-public abstract class AnyComponentAbs <T> extends CommonActions<T> {
-
+public abstract class AnyComponentAbs<T> extends CommonActions<T> {
+    protected String incomingValueForAnnotation;
     private List<WebElement> itemList;
 
     public AnyComponentAbs(WebDriver driver) {
@@ -43,5 +43,9 @@ public abstract class AnyComponentAbs <T> extends CommonActions<T> {
 
     protected WebElement getItemWebElement(int index) {
         return itemList.get(--index);
+    }
+
+    private void addValueForAnnotation(String incomingValueForAnnotation) {
+        this.incomingValueForAnnotation = incomingValueForAnnotation;
     }
 }

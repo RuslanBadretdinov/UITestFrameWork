@@ -7,20 +7,20 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class PageComponentUtil {
-        private static PageComponentUtil INSTANCE;
+    private static PageComponentUtil INSTANCE;
 
-        private PageComponentUtil() {
+    private PageComponentUtil() {
 
+    }
+
+    protected static PageComponentUtil getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new PageComponentUtil();
         }
+        return INSTANCE;
+    }
 
-        public static PageComponentUtil getInstance() {
-            if (INSTANCE == null) {
-                INSTANCE = new PageComponentUtil();
-            }
-            return INSTANCE;
-        }
-
-        public By defineLocatorTypeByAnnotationValue(String annotationValue) throws IllegalArgumentException {
+    public By defineLocatorTypeByAnnotationValue(String annotationValue) throws IllegalArgumentException {
         String searchStrategy = "";
 
         Pattern pattern = Pattern.compile("^(\\w+):.*?");

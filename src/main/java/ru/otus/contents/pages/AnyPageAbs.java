@@ -4,7 +4,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import ru.otus.annotations.PageValidation;
 import ru.otus.annotations.UrlPrefix;
 import ru.otus.driver.utils.CommonActions;
 
@@ -22,26 +21,19 @@ public abstract class AnyPageAbs<T> extends CommonActions<T> {
         super(driver);
     }
 
-    public AnyPageAbs(WebDriver driver, String incomingValueForAnnotation) {
-        super(driver);
-        this.incomingValueForAnnotation = incomingValueForAnnotation;
-
-        this.dynamicPageValidationBy = getDynamicPageValidationBy();
-        if (this.dynamicPageValidationBy == null) return;
-    }
-
     public T open() {
         driver.get(getBaseUrl() + getUrlPrefix());
         return (T) this;
     }
 
     public T isLoaded() {
-        String pageInNotLoadText = String.format("Страница '%s' не загружена", this.getClass().getSimpleName());
-        if (dynamicPageValidationBy == null) {
-            assertThat(waiter.waitForElementVisible($(this.dynamicPageValidationBy))).as(pageInNotLoadText).isTrue();
-        } else {
-            assertThat(waiter.waitForElementVisible(staticElementViaFindBy)).as(pageInNotLoadText).isTrue();
-        }
+        this.isLoaded(staticElementViaFindBy);
+        return (T) this;
+    }
+
+    protected T isLoaded(WebElement elementViaFindBy) {
+        String pageIsNotLoadedText = String.format("Страница '%s' не загружена", this.getClass().getSimpleName());
+        assertThat(waiter.waitForElementVisible(elementViaFindBy)).as(pageIsNotLoadedText).isTrue();
         return (T) this;
     }
 
@@ -64,25 +56,6 @@ public abstract class AnyPageAbs<T> extends CommonActions<T> {
         } catch (ClassCastException e) {
             return null;
         }
-    }
-
-
-    private By getDynamicPageValidationBy() {
-        if (getClass().isAnnotationPresent(PageValidation.class)) {
-            PageValidation pageValidation = getClass().getAnnotation(PageValidation.class);
-            String locatorTypeAndLocator = "";
-            if (pageValidation.value().startsWith("template:")) {
-                locatorTypeAndLocator = pageValidation.value().replace("template:", "");
-            }
-            return getPageLocator(locatorTypeAndLocator);
-        }
-        return null;
-    }
-
-    private By getPageLocator(String locatorTypeAndLocator) {
-        if (locatorTypeAndLocator.isEmpty()) return null;
-        locatorTypeAndLocator = String.format(locatorTypeAndLocator, this.incomingValueForAnnotation);
-        return this.getPageComponentUtil().defineLocatorTypeByAnnotationValue(locatorTypeAndLocator);
     }
 
     private String getBaseUrl() {

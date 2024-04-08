@@ -10,8 +10,6 @@ import ru.otus.driver.utils.waiters.Waiter;
 
 public class CommonActions<T> {
 
-    protected String incomingValueForAnnotation;
-
     protected WebDriver driver;
     protected Waiter waiter;
     protected Actions actions;
@@ -27,23 +25,19 @@ public class CommonActions<T> {
         return PageComponentUtil.getInstance();
     }
 
-    public Waiter getWaiter() {
+    protected Waiter getWaiter() {
         return waiter;
     }
 
-    public Actions getActions() {
+    protected Actions getActions() {
         return actions;
     }
 
-    public WebElement $(By locator) {
+    protected WebElement $(By locator) {
         return driver.findElement(locator);
     }
 
-    public String getText(WebElement webElement) {
+    protected String getText(WebElement webElement) {
         return webElement.getText();
-    }
-
-    protected void addValueForAnnotation(String incomingValueForAnnotation) {
-        this.incomingValueForAnnotation = incomingValueForAnnotation;
     }
 }

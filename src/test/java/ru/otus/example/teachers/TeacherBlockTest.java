@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import ru.otus.contents.components.BlockWithItemsComponent;
 import ru.otus.contents.pages.InstructorPage;
-import ru.otus.extensions.UIExtension;
 import ru.otus.contents.pages.MainPage;
+import ru.otus.extensions.UIExtension;
 
 @ExtendWith(UIExtension.class)
 public class TeacherBlockTest {
@@ -27,7 +27,7 @@ public class TeacherBlockTest {
                 .getItemParameterTextByIndex(1, 1);
         blockWithItemsComponent.clickItemByName(name);
 
-//        instructorsPage.isLoaded(name);
+        instructorsPage.isLoaded(name);
 
     }
 }

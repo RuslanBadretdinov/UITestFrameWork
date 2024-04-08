@@ -28,6 +28,6 @@ public class BlockWithItemsComponent extends AnyComponentAbs<BlockWithItemsCompo
 
     private WebElement getItemParameterByIndex(WebElement item, int indexParameter) {
         indexParameter--;
-        return item.findElement(By.xpath(String.format(".//div[%d]",indexParameter)));
+        return item.findElement(By.xpath(String.format(".//div[%d]", indexParameter)));
     }
 }

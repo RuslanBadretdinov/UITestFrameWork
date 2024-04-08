@@ -1,5 +1,6 @@
 package ru.otus.factory;
 
+import io.github.bonigarcia.wdm.config.Config;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -14,21 +15,19 @@ import java.util.Locale;
 
 public class DriverFactory implements IDriverFactory {
     private final String BROWSER_NAME = System.getProperty("browser.name").toLowerCase(Locale.ROOT);
+    private final String BROWSER_VERSION = System.getProperty("browser.version").toLowerCase(Locale.ROOT);
 
     @Override
     public WebDriver getDriver() {
         switch (this.BROWSER_NAME) {
             case "chrome" : {
-                WebDriverManager.chromiumdriver().setup();
+                WebDriverManager.chromiumdriver().browserVersion(BROWSER_VERSION).setup();;
                 IDriver<ChromeOptions> browserSettings = new ChromeWebDriver();
                 return new EventFiringDecorator<>(new ActionsListener())
                         .decorate(new ChromeDriver(browserSettings.getDriverOptions()));
             }
-            case "firefox" : {
+            default:
                 throw new WebDriverNotSupportedException(BROWSER_NAME);
-            }
         }
-
-        throw new WebDriverNotSupportedException(BROWSER_NAME);
     }
 }

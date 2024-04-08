@@ -1,4 +1,4 @@
-package ru.otus.driver_utils.waiters;
+package ru.otus.driver.utils.waiters;
 
 import org.openqa.selenium.support.ui.ExpectedCondition;
 

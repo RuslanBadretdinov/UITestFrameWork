@@ -84,6 +84,7 @@
             <properties>
                 <base.url>http://otus.ru</base.url>
                 <browser.name>chrome</browser.name>
+                <browser.version>123.0</browser.version>
             </properties>
         </profile>
         <profile>
@@ -91,6 +92,7 @@
             <properties>
                 <base.url>http://otus.ru</base.url>
                 <browser.name>chrome</browser.name>
+                <browser.version>123.0</browser.version>
             </properties>
         </profile>
     </profiles>

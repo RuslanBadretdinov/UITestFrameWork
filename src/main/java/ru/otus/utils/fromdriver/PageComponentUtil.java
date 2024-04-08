@@ -1,4 +1,4 @@
-package ru.otus.driver.utils;
+package ru.otus.utils.fromdriver;
 
 import org.openqa.selenium.By;
 

@@ -1,11 +1,11 @@
-package ru.otus.driver.utils;
+package ru.otus.utils.fromdriver;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
-import ru.otus.driver.utils.waiters.Waiter;
+import ru.otus.utils.fromdriver.waiters.Waiter;
 
 
 public class CommonActions<T> {

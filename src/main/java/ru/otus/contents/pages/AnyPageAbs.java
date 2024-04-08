@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.otus.annotations.UrlPrefix;
-import ru.otus.driver.utils.CommonActions;
+import ru.otus.utils.fromdriver.CommonActions;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;

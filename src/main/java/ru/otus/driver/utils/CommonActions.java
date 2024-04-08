@@ -23,7 +23,7 @@ public class CommonActions<T> {
         actions = new Actions(driver);
     }
 
-    public PageComponentUtil getPageComponentUtil() {
+    protected PageComponentUtil getPageComponentUtil() {
         return PageComponentUtil.getInstance();
     }
 
@@ -41,5 +41,9 @@ public class CommonActions<T> {
 
     public String getText(WebElement webElement) {
         return webElement.getText();
+    }
+
+    protected void addValueForAnnotation(String incomingValueForAnnotation) {
+        this.incomingValueForAnnotation = incomingValueForAnnotation;
     }
 }

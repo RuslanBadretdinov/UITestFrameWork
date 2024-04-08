@@ -6,14 +6,18 @@ import org.openqa.selenium.WebElement;
 import ru.otus.annotations.Component;
 import ru.otus.driver.utils.CommonActions;
 
+import java.util.List;
+
 public abstract class AnyComponentAbs <T> extends CommonActions<T> {
 
-    public AnyComponentAbs(WebDriver driver, String incomingValueForAnnotation) {
+    private List<WebElement> itemList;
+
+    public AnyComponentAbs(WebDriver driver) {
         super(driver);
-        this.incomingValueForAnnotation = incomingValueForAnnotation;
     }
 
-    public WebElement getComponentEntity() {
+    protected WebElement getComponentEntity(String incomingValueForAnnotation) {
+        this.addValueForAnnotation(incomingValueForAnnotation);
         return $(getComponentLocator());
     }
 
@@ -30,5 +34,14 @@ public abstract class AnyComponentAbs <T> extends CommonActions<T> {
                     .defineLocatorTypeByAnnotationValue(value);
         }
         return null;
+    }
+
+    public T chooseNeededBlockAndSetItemList(String incomingValueForAnnotation) {
+        this.itemList = getComponentEntity(incomingValueForAnnotation).findElements(By.xpath(".//a[./div]"));
+        return (T) this;
+    }
+
+    protected WebElement getItemWebElement(int index) {
+        return itemList.get(--index);
     }
 }

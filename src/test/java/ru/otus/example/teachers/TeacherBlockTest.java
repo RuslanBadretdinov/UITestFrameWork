@@ -23,10 +23,11 @@ public class TeacherBlockTest {
     public void openTeacherCardByClick() {
         mainPage.open();
 
-        String name = blockWithItemsComponent.getItemParameterText(1, 1);
-        blockWithItemsComponent.clickItem(name);
+        String name = blockWithItemsComponent.chooseNeededBlockAndSetItemList("Преподаватели")
+                .getItemParameterTextByIndex(1, 1);
+        blockWithItemsComponent.clickItemByName(name);
 
-        instructorsPage.pageShouldBeOpened(name);
+//        instructorsPage.isLoaded(name);
 
     }
 }

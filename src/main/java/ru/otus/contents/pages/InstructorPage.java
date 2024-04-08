@@ -8,7 +8,7 @@ import ru.otus.annotations.PageValidation;
 public class InstructorPage extends AnyPageAbs<InstructorPage> {
 
     @Inject
-    public InstructorPage(WebDriver driver) {
-        super(driver);
+    public InstructorPage(WebDriver driver, String instructorName) {
+        super(driver, instructorName);
     }
 }

@@ -36,10 +36,12 @@ public abstract class AnyPageAbs<T> extends CommonActions<T> {
     }
 
     public T isLoaded() {
-        assertThat(waiter.waitForElementVisible($(this.dynamicPageValidationBy)))
-                .as("Error")
-                .isTrue();
-
+        String pageInNotLoadText = String.format("Страница '%s' не загружена", this.getClass().getSimpleName());
+        if (dynamicPageValidationBy == null) {
+            assertThat(waiter.waitForElementVisible($(this.dynamicPageValidationBy))).as(pageInNotLoadText).isTrue();
+        } else {
+            assertThat(waiter.waitForElementVisible(staticElementViaFindBy)).as(pageInNotLoadText).isTrue();
+        }
         return (T) this;
     }
 

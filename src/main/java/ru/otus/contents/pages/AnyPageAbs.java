@@ -58,11 +58,11 @@ public abstract class AnyPageAbs<T> extends CommonActions<T> {
         }
     }
 
-    private String getBaseUrl() {
+    protected String getBaseUrl() {
         return StringUtils.stripEnd(System.getProperty("base.url"), "/");
     }
 
-    private String getUrlPrefix() {
+    protected String getUrlPrefix() {
         UrlPrefix urlAnnotation = getClass().getAnnotation(UrlPrefix.class);
         if (urlAnnotation != null) {
             return urlAnnotation.value();

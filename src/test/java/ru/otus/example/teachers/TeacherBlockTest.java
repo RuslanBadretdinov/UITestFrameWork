@@ -30,10 +30,11 @@ public class TeacherBlockTest {
 
         String name = blockWithItemsComponent.
                 chooseNeededBlockAndSetItemList("Преподаватели")
-                .getItemParameterTextByIndex(1, 1);
+                .getItemWithTextParameterAndIndex(1, 1);
         blockWithItemsComponent.clickItemByName(name);
 
         instructorsPage.isLoaded(name);
+        System.out.println("1");
 
     }
 }

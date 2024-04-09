@@ -36,13 +36,34 @@ public abstract class AnyComponentAbs<T> extends CommonActions<T> {
         return null;
     }
 
-    public T chooseNeededBlockAndSetItemList(String blockName) {
-        this.itemList = getComponentEntity(blockName).findElements(By.xpath(".//a[./div]"));
+    public T chooseNeededBlockAndMoveToThis(String blockName) {
+        this.getActions().moveToElement(getComponentEntity(blockName)).build().perform();
         return (T) this;
+    }
+
+    public T setItemList() {
+        this.itemList = getComponentEntity(this.incomingValueForAnnotation)
+                .findElements(By.xpath(".//a[./div]"));
+        return (T) this;
+    }
+
+
+    public T chooseNeededBlockAndSetItemList(String blockName) {
+        chooseNeededBlockAndMoveToThis(blockName);
+        setItemList();
+        return (T) this;
+    }
+
+    public List<WebElement> getItemList() {
+        return itemList;
     }
 
     protected WebElement getItemWebElement(int index) {
         return itemList.get(--index);
+    }
+
+    protected WebElement getItemParameterWebElementByIndex(WebElement item, String xpathValue, int indexParameter) {
+        return item.findElement(By.xpath(String.format(xpathValue + "[%d]", indexParameter)));
     }
 
     private void addValueForAnnotation(String incomingValueForAnnotation) {

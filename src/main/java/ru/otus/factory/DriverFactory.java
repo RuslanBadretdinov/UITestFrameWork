@@ -21,7 +21,6 @@ public class DriverFactory implements IDriverFactory {
         switch (this.BROWSER_NAME) {
             case "chrome": {
                 WebDriverManager.chromiumdriver().browserVersion(BROWSER_VERSION).setup();
-                ;
                 IDriver<ChromeOptions> browserSettings = new ChromeWebDriver();
                 return new EventFiringDecorator<>(new ActionsListener())
                         .decorate(new ChromeDriver(browserSettings.getDriverOptions()));

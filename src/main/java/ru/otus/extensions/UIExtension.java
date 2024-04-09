@@ -26,7 +26,6 @@ public class UIExtension implements BeforeEachCallback, AfterEachCallback {
                 .ifPresent(instance -> {
                     WebDriver driver = injector.getProvider(WebDriver.class).get();
                     if (driver != null) {
-                        driver.close();
                         driver.quit();
                     }
                 });

@@ -8,19 +8,19 @@ import ru.otus.exceptions.UrlIsNeededParametersException;
 
 @UrlPrefix("/instructors/{id}")
 @PageValidation("template:xpath://div[text()='%s']")
-public class InstructorPage extends AnyPageWithDynamicAnnotationAbs<InstructorPage> {
+public class InstructorItemPage extends AnyPageWithDynamicAnnotationAbs<InstructorItemPage> {
 
     @Inject
-    public InstructorPage(WebDriver driver) {
+    public InstructorItemPage(WebDriver driver) {
         super(driver);
     }
 
     @Override
-    public InstructorPage open() {
+    public InstructorItemPage open() {
         throw new UrlIsNeededParametersException("{id}. Use method - open(id)");
     }
 
-    public InstructorPage open(String id) {
+    public InstructorItemPage open(String id) {
         driver.get((getBaseUrl() + getUrlPrefix().replace("{id}", id)));
         return this;
     }

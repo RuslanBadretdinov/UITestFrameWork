@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import ru.otus.contents.components.BlockWithItemsComponent;
-import ru.otus.contents.pages.InstructorPage;
+import ru.otus.contents.pages.InstructorItemPage;
 import ru.otus.contents.pages.MainPage;
 import ru.otus.extensions.UIExtension;
 
@@ -20,7 +20,7 @@ public class TeacherBlockTest {
     @Inject
     private BlockWithItemsComponent blockWithItemsComponent;
     @Inject
-    private InstructorPage instructorsPage;
+    private InstructorItemPage instructorsPage;
 
     @Test
     @Tag("@openRandomTeacherPage")

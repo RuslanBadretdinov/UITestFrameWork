@@ -14,13 +14,12 @@ import java.util.Locale;
 
 public class DriverFactory implements IDriverFactory {
     private final String BROWSER_NAME = System.getProperty("browser.name").toLowerCase(Locale.ROOT);
-    private final String BROWSER_VERSION = System.getProperty("browser.version").toLowerCase(Locale.ROOT);
 
     @Override
     public WebDriver getDriver() {
         switch (this.BROWSER_NAME) {
             case "chrome": {
-                WebDriverManager.chromiumdriver().browserVersion(BROWSER_VERSION).setup();
+                WebDriverManager.chromiumdriver().setup();
                 IDriver<ChromeOptions> browserSettings = new ChromeWebDriver();
                 return new EventFiringDecorator<>(new ActionsListener())
                         .decorate(new ChromeDriver(browserSettings.getDriverOptions()));

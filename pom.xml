@@ -16,32 +16,35 @@
 
         <!-- Java version -->
         <java.version>17</java.version>
-        <maven.compiler.source>${java.version}</maven.compiler.source>
-        <maven.compiler.target>${java.version}</maven.compiler.target>
 
         <junit.version>5.10.2</junit.version>
-        <junit-platform-suite-engine.version>1.10.2</junit-platform-suite-engine.version>
-        <selenium-java.version>4.19.1</selenium-java.version>
+        <junit.platform.suite.engine.version>1.10.2</junit.platform.suite.engine.version>
+        <selenium.java.version>4.19.1</selenium.java.version>
         <webdrivermanager.version>5.8.0</webdrivermanager.version>
         <javafaker.version>1.0.2</javafaker.version>
-        <asserrtj-core.version>3.25.3</asserrtj-core.version>
+        <asserrtj.core.version>3.25.3</asserrtj.core.version>
         <guice.version>7.0.0</guice.version>
         <browsermob-core.version>2.1.5</browsermob-core.version>
 
-        <maven-surefire-plugin.version>3.2.5</maven-surefire-plugin.version>
+        <maven.surefire.plugin.version>3.2.5</maven.surefire.plugin.version>
         <aspectjweaver.version>1.9.22</aspectjweaver.version>
 
-        <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
-        <maven-compiler-plugin.source>1.8</maven-compiler-plugin.source>
-        <maven-compiler-plugin.target>1.8</maven-compiler-plugin.target>
+        <maven.compiler.plugin.version>3.13.0</maven.compiler.plugin.version>
+        <maven.compiler.source.version>${java.version}</maven.compiler.source.version>
+        <maven.compiler.target.version>${java.version}</maven.compiler.target.version>
 
-        <spotbugs-maven-plugin.version>4.8.2.0</spotbugs-maven-plugin.version>
+        <spotbugs.maven.plugin.version>4.8.2.0</spotbugs.maven.plugin.version>
         <spotbugs.version>4.8.3</spotbugs.version>
         <maven-checkstyle-plugin.version>3.3.1</maven-checkstyle-plugin.version>
+
+        <forkCount>1</forkCount>
+        <reuseForks>true</reuseForks>
 
         <browser.name/>
         <browser.version/>
         <base.url/>
+
+        <testTag/>
     </properties>
 
     <dependencies>
@@ -53,12 +56,12 @@
         <dependency>
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-suite-engine</artifactId>
-            <version>${junit-platform-suite-engine.version}</version>
+            <version>${junit.platform.suite.engine.version}</version>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>${selenium-java.version}</version>
+            <version>${selenium.java.version}</version>
         </dependency>
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
@@ -73,7 +76,7 @@
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
-            <version>${asserrtj-core.version}</version>
+            <version>${asserrtj.core.version}</version>
         </dependency>
         <dependency>
             <groupId>com.google.inject</groupId>
@@ -106,19 +109,25 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>${maven-surefire-plugin.version}</version>
+                <version>${maven.surefire.plugin.version}</version>
                 <configuration>
+                    <forkCount>${forkCount}</forkCount>
+                    <reuseForks>${reuseForks}</reuseForks>
+
                     <systemPropertyVariables>
                         <base.url>${base.url}</base.url>
                         <browser.name>${browser.name}</browser.name>
                         <browser.version>${browser.version}</browser.version>
                     </systemPropertyVariables>
+
                     <testFailureIgnore>true</testFailureIgnore>
                     <includes>**/*Test.java</includes>
                     <argLine>
                         -Dfile.encoding=${encoding.type}
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectjweaver.version}/aspectjweaver-${aspectjweaver.version}.jar"
                     </argLine>
+
+                    <groups>${testTag}</groups>
                 </configuration>
                 <dependencies>
                     <dependency>
@@ -131,43 +140,43 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven-compiler-plugin.version}</version>
+                <version>${maven.compiler.plugin.version}</version>
                 <configuration>
-                    <source>${maven-compiler-plugin.source}</source>
-                    <target>${maven-compiler-plugin.target}</target>
+                    <source>${maven.compiler.source.version}</source>
+                    <target>${maven.compiler.target.version}</target>
                     <showDeprecation>true</showDeprecation>
                 </configuration>
             </plugin>
-<!--            <plugin>-->
-<!--                <groupId>com.github.spotbugs</groupId>-->
-<!--                <artifactId>spotbugs-maven-plugin</artifactId>-->
-<!--                <version>${spotbugs-maven-plugin.version}</version>-->
-<!--                <dependencies>-->
-<!--                    <dependency>-->
-<!--                        <groupId>com.github.spotbugs</groupId>-->
-<!--                        <artifactId>spotbugs</artifactId>-->
-<!--                        <version>${spotbugs.version}</version>-->
-<!--                    </dependency>-->
-<!--                </dependencies>-->
-<!--            </plugin>-->
-<!--            <plugin>-->
-<!--                <groupId>org.apache.maven.plugins</groupId>-->
-<!--                <artifactId>maven-checkstyle-plugin</artifactId>-->
-<!--                <version>${maven-checkstyle-plugin.version}</version>-->
-<!--                <configuration>-->
-<!--                    <includeTestSourceDirectory>true</includeTestSourceDirectory>-->
-<!--                    <configuration>${project.build.sourceDirectory}/../resources/checkstyle.xml</configuration>-->
-<!--                </configuration>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <id>analyze-compile</id>-->
-<!--                        <phase>compile</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>check</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
+            <plugin>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
+                <version>${spotbugs.maven.plugin.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.github.spotbugs</groupId>
+                        <artifactId>spotbugs</artifactId>
+                        <version>${spotbugs.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${maven-checkstyle-plugin.version}</version>
+                <configuration>
+                    <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                    <configLocation>${project.build.sourceDirectory}/../resources/checkstyle.xml</configLocation>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>analyze-compile</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 

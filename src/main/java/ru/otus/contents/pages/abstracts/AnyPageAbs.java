@@ -1,4 +1,4 @@
-package ru.otus.contents.pages;
+package ru.otus.contents.pages.abstracts;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;

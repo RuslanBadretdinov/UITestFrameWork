@@ -1,9 +1,10 @@
-package ru.otus.contents.pages;
+package ru.otus.contents.pages.dynamics;
 
 import com.google.inject.Inject;
 import org.openqa.selenium.WebDriver;
 import ru.otus.annotations.PageValidation;
 import ru.otus.annotations.UrlPrefix;
+import ru.otus.contents.pages.abstracts.AnyPageWithDynamicAnnotationAbs;
 import ru.otus.exceptions.UrlIsNeededParametersException;
 
 @UrlPrefix("/instructors/{id}")

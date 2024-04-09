@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import ru.otus.contents.components.BlockWithItemsComponent;
-import ru.otus.contents.pages.InstructorItemPage;
-import ru.otus.contents.pages.MainPage;
+import ru.otus.contents.pages.common.MainPage;
+import ru.otus.contents.pages.dynamics.InstructorItemPage;
 import ru.otus.extensions.UIExtension;
 
 @ExtendWith(UIExtension.class)

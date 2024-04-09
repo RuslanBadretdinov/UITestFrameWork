@@ -32,7 +32,8 @@ public abstract class AnyPageAbs<T> extends CommonActions<T> {
     }
 
     protected T isLoaded(WebElement elementViaFindBy) {
-        String pageIsNotLoadedText = String.format("Страница '%s' не загружена", this.getClass().getSimpleName());
+        String pageIsNotLoadedText = String.format("Страница '%s' не загружена, вебэлемент маркера не виден на странице",
+                this.getClass().getSimpleName());
         assertThat(waiter.waitForElementVisible(elementViaFindBy)).as(pageIsNotLoadedText).isTrue();
         return (T) this;
     }

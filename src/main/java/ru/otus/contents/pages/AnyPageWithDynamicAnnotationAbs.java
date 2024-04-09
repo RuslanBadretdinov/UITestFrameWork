@@ -17,13 +17,18 @@ public abstract class AnyPageWithDynamicAnnotationAbs<T> extends AnyPageAbs<T>{
     @Override
     public T isLoaded() {
         assertThat(incomingValueForAnnotation)
-                .as("Не установлен входной параметр, определяющий, который нужгл было найти при загрузке страницы")
+                .as("Не установлен входной параметр, который нужен для загрузки страницы")
                 .isNotEmpty();
         return super.isLoaded();
     }
 
     public T isLoaded(String titleOfItemPage) {
         setTitleOfItemPage(titleOfItemPage);
+        String pageIsNotLoadedText = String.format("Страница '%s' не загружена, локатор маркера не присутствует на странице",
+                this.getClass().getSimpleName());
+        assertThat(getWaiter().waitForByElementPresence(dynamicPageValidationBy))
+                .as("")
+                .isTrue();
         super.isLoaded($(dynamicPageValidationBy));
         return (T) this;
     }

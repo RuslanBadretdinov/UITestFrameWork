@@ -28,13 +28,21 @@ public class TeacherBlockTest {
     public void openTeacherCardByClick() {
         mainPage.open();
 
-        String name = blockWithItemsComponent.
-                chooseNeededBlockAndSetItemList("Преподаватели")
-                .getItemWithTextParameterAndIndex(1, 1);
-        blockWithItemsComponent.clickItemByName(name);
+        String name = "";
+
+//        String name = blockWithItemsComponent.
+//                chooseNeededBlockAndSetItemList("Преподаватели")
+//                .getItemWithTextParameterAndIndex(1, 1);
+//        blockWithItemsComponent.clickItemByName(name);
+
+//        try {
+//            Thread.sleep(10000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 
         instructorsPage.isLoaded(name);
-        System.out.println("1");
+//        System.out.println("1");
 
     }
 }

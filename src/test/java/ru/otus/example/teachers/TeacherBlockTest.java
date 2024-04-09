@@ -5,7 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import ru.otus.contents.components.BlockWithItemsComponent;
+import ru.otus.contents.components.mainpage.BlockWithItemsComponent;
 import ru.otus.contents.pages.common.MainPage;
 import ru.otus.contents.pages.dynamics.InstructorItemPage;
 import ru.otus.extensions.UIExtension;
@@ -20,7 +20,7 @@ public class TeacherBlockTest {
     @Inject
     private BlockWithItemsComponent blockWithItemsComponent;
     @Inject
-    private InstructorItemPage instructorsPage;
+    private InstructorItemPage instructorItemPage;
 
     @Test
     @Tag("@openTeacherCardByClick")
@@ -39,7 +39,7 @@ public class TeacherBlockTest {
             e.printStackTrace();
         }
 
-        instructorsPage.isLoaded(name);
+        instructorItemPage.isLoaded(name);
         System.out.println("1");
 
     }

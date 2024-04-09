@@ -1,9 +1,10 @@
-package ru.otus.contents.components;
+package ru.otus.contents.components.mainpage;
 
 import com.google.inject.Inject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import ru.otus.annotations.Component;
+import ru.otus.contents.components.abstracts.AnyComponentAbs;
 
 @Component("xpath://section[.//*[text()='%s']]")
 public class BlockWithItemsComponent extends AnyComponentAbs<BlockWithItemsComponent> {

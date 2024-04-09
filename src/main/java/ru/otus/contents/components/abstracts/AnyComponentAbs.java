@@ -1,4 +1,4 @@
-package ru.otus.contents.components;
+package ru.otus.contents.components.abstracts;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

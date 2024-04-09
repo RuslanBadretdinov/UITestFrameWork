@@ -6,7 +6,7 @@ import ru.otus.annotations.PageValidation;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public abstract class AnyPageWithDynamicAnnotationAbs<T> extends AnyPageAbs<T>{
+public abstract class AnyPageWithDynamicAnnotationAbs<T> extends AnyPageAbs<T> {
     private String incomingValueForAnnotation;
     private By dynamicPageValidationBy;
 
@@ -19,7 +19,7 @@ public abstract class AnyPageWithDynamicAnnotationAbs<T> extends AnyPageAbs<T>{
         assertThat(incomingValueForAnnotation)
                 .as("Не установлен входной параметр, который нужен для загрузки страницы")
                 .isNotEmpty();
-        return super.isLoaded();
+        return (T) this;
     }
 
     public T isLoaded(String titleOfItemPage) {
@@ -27,7 +27,7 @@ public abstract class AnyPageWithDynamicAnnotationAbs<T> extends AnyPageAbs<T>{
         String pageIsNotLoadedText = String.format("Страница '%s' не загружена, локатор маркера не присутствует на странице",
                 this.getClass().getSimpleName());
         assertThat(getWaiter().waitForByElementPresence(dynamicPageValidationBy))
-                .as("")
+                .as(pageIsNotLoadedText)
                 .isTrue();
         super.isLoaded($(dynamicPageValidationBy));
         return (T) this;

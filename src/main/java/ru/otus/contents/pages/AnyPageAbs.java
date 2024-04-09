@@ -14,7 +14,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public abstract class AnyPageAbs<T> extends CommonActions<T> {
 
-    protected WebElement staticElementViaFindBy;
     private By dynamicPageValidationBy;
 
     public AnyPageAbs(WebDriver driver) {
@@ -26,10 +25,7 @@ public abstract class AnyPageAbs<T> extends CommonActions<T> {
         return (T) this;
     }
 
-    public T isLoaded() {
-        this.isLoaded(staticElementViaFindBy);
-        return (T) this;
-    }
+    public abstract T isLoaded();
 
     protected T isLoaded(WebElement elementViaFindBy) {
         String pageIsNotLoadedText = String.format("Страница '%s' не загружена, вебэлемент маркера не виден на странице",

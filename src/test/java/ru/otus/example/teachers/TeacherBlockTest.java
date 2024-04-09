@@ -23,10 +23,10 @@ public class TeacherBlockTest {
     private InstructorItemPage instructorsPage;
 
     @Test
-    @Tag("@openRandomTeacherPage")
+    @Tag("@openTeacherCardByClick")
     @DisplayName("Открытие страницы случайного преподавателя")
     public void openTeacherCardByClick() {
-        mainPage.open();
+        mainPage.open().isLoaded();
 
         String name = blockWithItemsComponent.
                 chooseNeededBlockAndSetItemList("Преподаватели")
@@ -40,7 +40,7 @@ public class TeacherBlockTest {
         }
 
         instructorsPage.isLoaded(name);
-//        System.out.println("1");
+        System.out.println("1");
 
     }
 }

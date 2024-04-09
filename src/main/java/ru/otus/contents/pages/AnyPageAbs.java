@@ -59,7 +59,7 @@ public abstract class AnyPageAbs<T> extends CommonActions<T> {
     }
 
     private String getBaseUrl() {
-        return StringUtils.stripEnd(System.getProperty("webdriver.base.url", "https://otus.ru"), "/");
+        return StringUtils.stripEnd(System.getProperty("base.url"), "/");
     }
 
     private String getUrlPrefix() {

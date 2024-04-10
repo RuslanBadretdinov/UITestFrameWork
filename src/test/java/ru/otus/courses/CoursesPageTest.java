@@ -11,7 +11,7 @@ import ru.otus.extensions.UIExtension;
 
 @ExtendWith(UIExtension.class)
 @Tag("@coursesPageTests")
-@DisplayName("Набор тестов со страницей преподавателя")
+@DisplayName("Набор тестов - взаимодействие из каталога курсов")
 public class CoursesPageTest {
 
     @Inject
@@ -21,7 +21,7 @@ public class CoursesPageTest {
     private CourseItemPage courseItemPage;
 
     @Test
-    @Tag("@scenario1a")
+    @Tag("@scenario1")
     @DisplayName("Открытие страницы конкретного курса")
     public void openDefiniteCoursePage() {
         String courseName = "Reinforcement Learning";
@@ -34,8 +34,8 @@ public class CoursesPageTest {
     }
 
     @Test
-    @Tag("@scenario2a")
-    @DisplayName("Поиск по фильтру мин и макс даты начала курсов на странице 'Все курсы " +
+    @Tag("@scenario2")
+    @DisplayName("Поиск мин и макс даты начала курсов на странице 'Все курсы' " +
             "и проверка названия и даты начала на странице этого курса")
     public void filterCoursesWithDateAndChec() {
         coursesPage.open()

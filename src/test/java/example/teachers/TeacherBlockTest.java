@@ -1,4 +1,4 @@
-package ru.otus.example.teachers;
+package example.teachers;
 
 import com.google.inject.Inject;
 import org.junit.jupiter.api.DisplayName;

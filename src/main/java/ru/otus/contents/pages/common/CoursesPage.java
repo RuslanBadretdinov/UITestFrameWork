@@ -1,5 +1,7 @@
 package ru.otus.contents.pages.common;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import com.google.inject.Inject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -16,7 +18,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
-import static org.assertj.core.api.Assertions.assertThat;
 
 @UrlPrefix("/catalog/courses")
 public class CoursesPage extends AnyPageAbs<CoursesPage> {

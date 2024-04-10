@@ -1,9 +1,10 @@
 package ru.otus.contents.pages.abstracts;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import ru.otus.annotations.PageValidation;
-import static org.assertj.core.api.Assertions.assertThat;
 
 public abstract class AnyPageWithDynamicAnnotationAbs<T> extends AnyPageAbs<T> {
     private String incomingValueForAnnotation;

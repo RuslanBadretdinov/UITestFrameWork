@@ -41,6 +41,10 @@ public class Waiter implements IWaiter {
         return webDriverWait.until(ExpectedConditions.visibilityOfAllElements(list));
     }
 
+    public WebElement waitVisibleElementAndReturn(WebElement element) {
+        return webDriverWait.until(ExpectedConditions.visibilityOf(element));
+    }
+
     public boolean waitForElementVisible(By by) {
         return waitForElementVisible(this.webDriverWait.until(ExpectedConditions.presenceOfElementLocated(by)));
     }

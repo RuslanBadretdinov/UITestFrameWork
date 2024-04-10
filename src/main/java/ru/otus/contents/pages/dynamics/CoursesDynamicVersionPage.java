@@ -8,7 +8,7 @@ import ru.otus.contents.pages.abstracts.AnyPageWithDynamicAnnotationAbs;
 import ru.otus.contents.pages.common.CoursesPage;
 
 @UrlPrefix("/catalog/courses?categories={category}")
-@PageValidation("template:xpath://div[@value = 'true']//label[text() = '%s']")
+@PageValidation("template:xpath://div[@class = 'ReactCollapse--content']//div[@value = 'true']//label[text() = '%s']")
 public class CoursesDynamicVersionPage extends AnyPageWithDynamicAnnotationAbs<CoursesPage> {
 
     @Inject

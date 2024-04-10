@@ -36,5 +36,10 @@ public class MainPageTest {
                 .chooseNeededBlockAndSetItemList("Обучение")
                 .resetItemListViaLinkContainsPath("https://otus.ru/categories")
                 .getRandomItemName();
+
+        navMenuComponent.clickItemByName(name);
+        coursesDynamicVersionPage.isLoaded();
+
+        System.out.println(name);
     }
 }

@@ -9,6 +9,8 @@ import ru.otus.contents.components.abstracts.AnyComponentAbs;
 @Component("xpath://section[.//*[text()='%s']]")
 public class BlockWithItemsComponent extends AnyComponentAbs<BlockWithItemsComponent> {
 
+    private final String HREF_XPATH = ".//a[./div]";
+
     @Inject
     public BlockWithItemsComponent(WebDriver driver) {
         super(driver);
@@ -20,7 +22,7 @@ public class BlockWithItemsComponent extends AnyComponentAbs<BlockWithItemsCompo
 
     public BlockWithItemsComponent setItemList() {
         this.itemList = waiter.waitForElementsVisible(getComponentEntity(this.incomingValueForAnnotation)
-                .findElements(By.xpath(".//a[./div]")));
+                .findElements(By.xpath(HREF_XPATH)));
         return this;
     }
 

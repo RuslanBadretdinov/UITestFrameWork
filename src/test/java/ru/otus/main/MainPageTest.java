@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import ru.otus.contents.components.mainpage.NavMenuComponent;
 import ru.otus.contents.pages.common.CoursesPage;
 import ru.otus.contents.pages.common.MainPage;
 import ru.otus.contents.pages.dynamics.CoursesDynamicVersionPage;
@@ -18,6 +19,8 @@ public class MainPageTest {
     @Inject
     private MainPage mainPage;
     @Inject
+    private NavMenuComponent navMenuComponent;
+    @Inject
     private CoursesPage coursesPage;
     @Inject
     private CoursesDynamicVersionPage coursesDynamicVersionPage;
@@ -29,12 +32,9 @@ public class MainPageTest {
     public void openDefiniteCoursePage() {
         mainPage.open().isLoaded();
 
-        System.out.println(1);
-
-//        coursesPage.open()
-//                .isLoaded()
-//                .clickNeededCourse(courseName);
-//
-//        courseItemPage.isLoaded(courseName);
+        String name = navMenuComponent
+                .chooseNeededBlockAndSetItemList("Обучение")
+                .resetItemListViaLinkContainsPath("https://otus.ru/categories")
+                .getRandomItemName();
     }
 }

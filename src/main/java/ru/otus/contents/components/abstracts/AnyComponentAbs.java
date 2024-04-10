@@ -10,7 +10,7 @@ import java.util.List;
 
 public abstract class AnyComponentAbs<T> extends CommonActions<T> {
     protected String incomingValueForAnnotation;
-    private List<WebElement> itemList;
+    protected List<WebElement> itemList;
 
     public AnyComponentAbs(WebDriver driver) {
         super(driver);
@@ -41,11 +41,7 @@ public abstract class AnyComponentAbs<T> extends CommonActions<T> {
         return (T) this;
     }
 
-    public T setItemList() {
-        this.itemList = getComponentEntity(this.incomingValueForAnnotation)
-                .findElements(By.xpath(".//a[./div]"));
-        return (T) this;
-    }
+    public abstract T setItemList();
 
 
     public T chooseNeededBlockAndSetItemList(String blockName) {

@@ -18,6 +18,12 @@ public class BlockWithItemsComponent extends AnyComponentAbs<BlockWithItemsCompo
         getComponentEntity(blockName).findElement(By.xpath(String.format(".//*[./div[text()='%s']]", name))).click();
     }
 
+    public BlockWithItemsComponent setItemList() {
+        this.itemList = getComponentEntity(this.incomingValueForAnnotation)
+                .findElements(By.xpath(".//a[./div]"));
+        return this;
+    }
+
     public void clickItemByName(String name) {
         this.clickItemByName(this.incomingValueForAnnotation, name);
     }

@@ -19,8 +19,8 @@ public class BlockWithItemsComponent extends AnyComponentAbs<BlockWithItemsCompo
     }
 
     public BlockWithItemsComponent setItemList() {
-        this.itemList = getComponentEntity(this.incomingValueForAnnotation)
-                .findElements(By.xpath(".//a[./div]"));
+        this.itemList = waiter.waitForElementsVisible(getComponentEntity(this.incomingValueForAnnotation)
+                .findElements(By.xpath(".//a[./div]")));
         return this;
     }
 

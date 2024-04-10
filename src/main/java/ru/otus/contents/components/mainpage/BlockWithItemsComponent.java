@@ -9,11 +9,15 @@ import ru.otus.contents.components.abstracts.AnyComponentAbs;
 @Component("xpath://section[.//*[text()='%s']]")
 public class BlockWithItemsComponent extends AnyComponentAbs<BlockWithItemsComponent> {
 
-    private final String HREF_XPATH = ".//a[./div]";
+    private final String hrefXpath = ".//a[./div]";
 
     @Inject
     public BlockWithItemsComponent(WebDriver driver) {
         super(driver);
+    }
+
+    public void clickItemByName(String name) {
+        this.clickItemByName(this.incomingValueForAnnotation, name);
     }
 
     public void clickItemByName(String blockName, String name) {
@@ -22,12 +26,8 @@ public class BlockWithItemsComponent extends AnyComponentAbs<BlockWithItemsCompo
 
     public BlockWithItemsComponent setItemList() {
         this.itemList = waiter.waitForElementsVisible(getComponentEntity(this.incomingValueForAnnotation)
-                .findElements(By.xpath(HREF_XPATH)));
+                .findElements(By.xpath(hrefXpath)));
         return this;
-    }
-
-    public void clickItemByName(String name) {
-        this.clickItemByName(this.incomingValueForAnnotation, name);
     }
 
     public String getItemWithTextParameterAndIndex(int indexItem, int indexParameter) {

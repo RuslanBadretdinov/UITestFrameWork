@@ -6,10 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.otus.annotations.UrlPrefix;
 import ru.otus.utils.fromdriver.CommonActions;
-
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 public abstract class AnyPageAbs<T> extends CommonActions<T> {

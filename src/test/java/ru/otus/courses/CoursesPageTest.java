@@ -35,8 +35,7 @@ public class CoursesPageTest {
 
     @Test
     @Tag("@scenario2")
-    @DisplayName("Поиск мин и макс даты начала курсов на странице 'Все курсы' " +
-            "и проверка названия и даты начала на странице этого курса")
+    @DisplayName("Поиск мин и макс даты начала курсов на странице 'Все курсы' и проверка названия и даты начала на странице этого курса")
     public void filterCoursesWithDateAndChec() {
         coursesPage.open()
                 .isLoaded()

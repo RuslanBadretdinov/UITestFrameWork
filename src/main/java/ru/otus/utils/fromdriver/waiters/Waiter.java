@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
 import java.util.List;
 
@@ -37,16 +36,16 @@ public class Waiter implements IWaiter {
         return waitForCondition(ExpectedConditions.visibilityOf(element));
     }
 
-    public List<WebElement> waitForElementsVisible(List<WebElement> list) {
-        return webDriverWait.until(ExpectedConditions.visibilityOfAllElements(list));
+    public boolean waitForElementVisible(By by) {
+        return waitForElementVisible(this.webDriverWait.until(ExpectedConditions.presenceOfElementLocated(by)));
     }
 
     public WebElement waitVisibleElementAndReturn(WebElement element) {
         return webDriverWait.until(ExpectedConditions.visibilityOf(element));
     }
 
-    public boolean waitForElementVisible(By by) {
-        return waitForElementVisible(this.webDriverWait.until(ExpectedConditions.presenceOfElementLocated(by)));
+    public List<WebElement> waitForElementsVisible(List<WebElement> list) {
+        return webDriverWait.until(ExpectedConditions.visibilityOfAllElements(list));
     }
 
     public boolean waitForElementInvisible(WebElement element) {

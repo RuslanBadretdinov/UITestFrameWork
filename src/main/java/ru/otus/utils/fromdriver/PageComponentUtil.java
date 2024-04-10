@@ -1,7 +1,6 @@
 package ru.otus.utils.fromdriver;
 
 import org.openqa.selenium.By;
-
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

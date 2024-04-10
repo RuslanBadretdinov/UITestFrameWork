@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.otus.annotations.Component;
 import ru.otus.utils.fromdriver.CommonActions;
-
 import java.util.List;
 
 public abstract class AnyComponentAbs<T> extends CommonActions<T> {

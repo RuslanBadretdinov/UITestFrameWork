@@ -9,15 +9,14 @@ import ru.otus.exceptions.WebDriverNotSupportedException;
 import ru.otus.factory.impl.ChromeWebDriver;
 import ru.otus.factory.impl.IDriver;
 import ru.otus.listeners.ActionsListener;
-
 import java.util.Locale;
 
 public class DriverFactory implements IDriverFactory {
-    private final String BROWSER_NAME = System.getProperty("browser.name").toLowerCase(Locale.ROOT);
+    private final String browserName = System.getProperty("browser.name").toLowerCase(Locale.ROOT);
 
     @Override
     public WebDriver getDriver() {
-        switch (this.BROWSER_NAME) {
+        switch (this.browserName) {
             case "chrome": {
                 WebDriverManager.chromiumdriver().setup();
                 IDriver<ChromeOptions> browserSettings = new ChromeWebDriver();
@@ -25,7 +24,7 @@ public class DriverFactory implements IDriverFactory {
                         .decorate(new ChromeDriver(browserSettings.getDriverOptions()));
             }
             default:
-                throw new WebDriverNotSupportedException(BROWSER_NAME);
+                throw new WebDriverNotSupportedException(browserName);
         }
     }
 }

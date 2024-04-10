@@ -9,7 +9,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.otus.annotations.UrlPrefix;
 import ru.otus.contents.pages.abstracts.AnyPageAbs;
-
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -17,15 +16,14 @@ import java.util.List;
 import java.util.Locale;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 @UrlPrefix("/catalog/courses")
 public class CoursesPage extends AnyPageAbs<CoursesPage> {
 
-    private final String HREF_XPATH = "./.";
-    private final String NAME_XPATH = ".//h6";
-    private final String DATE_XPATH = ".//h6/following-sibling::div//div[text()]";
+    private final String hrefXpath = "./.";
+    private final String nameXpath = ".//h6";
+    private final String dateXpath = ".//h6/following-sibling::div//div[text()]";
     private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter
             .ofPattern("dd MMMM, yyyy", new Locale("ru"));
 
@@ -50,9 +48,9 @@ public class CoursesPage extends AnyPageAbs<CoursesPage> {
     public CoursesPage checkDataOfCoursesListWithDataOfCoursePageViaJSOUP() {
         this.coursesList
                 .forEach(el -> {
-                    String href = el.findElement(By.xpath(HREF_XPATH)).getAttribute("href");
-                    String courseName = el.findElement(By.xpath(NAME_XPATH)).getAttribute("innerText").trim();
-                    LocalDate lDate = parseDateToLocaleDate(el.findElement(By.xpath(DATE_XPATH)).getText().trim());
+                    String href = el.findElement(By.xpath(hrefXpath)).getAttribute("href");
+                    String courseName = el.findElement(By.xpath(nameXpath)).getAttribute("innerText").trim();
+                    LocalDate elDate = parseDateToLocaleDate(el.findElement(By.xpath(dateXpath)).getText().trim());
 
                     Jsoup.newSession();
                     Document coursePage = null;
@@ -71,14 +69,14 @@ public class CoursesPage extends AnyPageAbs<CoursesPage> {
                             .isTrue();
 
                     assertThat(
-                            coursePage.selectXpath("//section//div[contains(@class, 'galmep')]/div/div[1]//p " +
-                                            "| //p[contains(text(), 'Начало занятий')]/../../..//p[contains(@class, 'item-text')]")
+                            coursePage.selectXpath("//section//div[contains(@class, 'galmep')]/div/div[1]//p "
+                                            + "| //p[contains(text(), 'Начало занятий')]/../../..//p[contains(@class, 'item-text')]")
                                     .stream()
                                     .map(element -> element.text().trim())
-                                    .anyMatch(x -> this.parseDateToLocaleDate(x + ", 2024").equals(lDate))
+                                    .anyMatch(x -> this.parseDateToLocaleDate(x + ", 2024").equals(elDate))
                     )
                             .as(String.format("Нужной даты '%s' начала курса не было найдено на '%s'",
-                                    lDate.format(dateTimeFormatter), href))
+                                    elDate.format(dateTimeFormatter), href))
                             .isTrue();
                 });
         return this;
@@ -95,11 +93,11 @@ public class CoursesPage extends AnyPageAbs<CoursesPage> {
     }
 
     private void setSortedDateCoursesList(boolean trueIsMaxFalseIsMin) {
-        LocalDate filterDate = this.coursesBlock.findElements(By.xpath(DATE_XPATH)).stream()
+        LocalDate filterDate = this.coursesBlock.findElements(By.xpath(dateXpath)).stream()
                 .map(el -> parseDateToLocaleDate(el.getText()))
                 .min((l1, l2) -> trueIsMaxFalseIsMin ? l2.compareTo(l1) : l1.compareTo(l2)).get();
 
-        this.coursesList = this.coursesBlock.findElements(By.xpath(DATE_XPATH)).stream()
+        this.coursesList = this.coursesBlock.findElements(By.xpath(dateXpath)).stream()
                 .filter(el -> filterDate.compareTo(parseDateToLocaleDate(el.getText())) == 0)
                 .map(o -> o.findElement(By.xpath("./ancestor-or-self::a")))
                 .collect(Collectors.toList());
@@ -110,7 +108,7 @@ public class CoursesPage extends AnyPageAbs<CoursesPage> {
     }
 
     public void clickNeededCourse(String courseName) {
-        coursesBlock.findElements(By.xpath(NAME_XPATH))
+        coursesBlock.findElements(By.xpath(nameXpath))
                 .stream()
                 .filter(element -> element.getAttribute("innerText").equals(courseName))
                 .findFirst()

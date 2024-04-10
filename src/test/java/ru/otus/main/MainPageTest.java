@@ -39,7 +39,5 @@ public class MainPageTest {
 
         navMenuComponent.clickItemByName(name);
         coursesDynamicVersionPage.isLoaded();
-
-        System.out.println(name);
     }
 }

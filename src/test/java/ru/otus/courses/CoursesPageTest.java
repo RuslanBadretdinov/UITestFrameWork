@@ -10,7 +10,7 @@ import ru.otus.contents.pages.dynamics.CourseItemPage;
 import ru.otus.extensions.UIExtension;
 
 @ExtendWith(UIExtension.class)
-@Tag("@exampleSetTests")
+@Tag("@coursesPageTests")
 @DisplayName("Набор тестов со страницей преподавателя")
 public class CoursesPageTest {
 
@@ -35,7 +35,8 @@ public class CoursesPageTest {
 
     @Test
     @Tag("@scenario2a")
-    @DisplayName("Открытие страницы конкретного курса")
+    @DisplayName("Поиск по фильтру мин и макс даты начала курсов на странице 'Все курсы " +
+            "и проверка названия и даты начала на странице этого курса")
     public void filterCoursesWithDateAndChec() {
         coursesPage.open()
                 .isLoaded()

@@ -71,7 +71,8 @@ public class CoursesPage extends AnyPageAbs<CoursesPage> {
                             .isTrue();
 
                     assertThat(
-                            coursePage.selectXpath("//section//div[contains(@class, 'galmep')]/div/div[1]//p")
+                            coursePage.selectXpath("//section//div[contains(@class, 'galmep')]/div/div[1]//p " +
+                                            "| //p[contains(text(), 'Начало занятий')]/../../..//p[contains(@class, 'item-text')]")
                                     .stream()
                                     .map(element -> element.text().trim())
                                     .anyMatch(x -> this.parseDateToLocaleDate(x + ", 2024").equals(lDate))
@@ -79,39 +80,29 @@ public class CoursesPage extends AnyPageAbs<CoursesPage> {
                             .as(String.format("Нужной даты '%s' начала курса не было найдено на '%s'",
                                     lDate.format(dateTimeFormatter), href))
                             .isTrue();
-                    System.out.println(href + " " + courseName + " " + lDate.format(dateTimeFormatter));
                 });
         return this;
     }
 
     public CoursesPage setTheEarliestCoursesList() {
-        System.out.println("Earliest");
         setSortedDateCoursesList(false);
         return this;
     }
 
     public CoursesPage setTheLatestCoursesList() {
-        System.out.println("Latest");
         setSortedDateCoursesList(true);
         return this;
     }
 
     private void setSortedDateCoursesList(boolean trueIsMaxFalseIsMin) {
-        System.out.println("trueIsMaxFalseIsMin = " + trueIsMaxFalseIsMin);
-
         LocalDate filterDate = this.coursesBlock.findElements(By.xpath(DATE_XPATH)).stream()
                 .map(el -> parseDateToLocaleDate(el.getText()))
                 .min((l1, l2) -> trueIsMaxFalseIsMin ? l2.compareTo(l1) : l1.compareTo(l2)).get();
-
-        System.out.println("filterDate = " + filterDate);
 
         this.coursesList = this.coursesBlock.findElements(By.xpath(DATE_XPATH)).stream()
                 .filter(el -> filterDate.compareTo(parseDateToLocaleDate(el.getText())) == 0)
                 .map(o -> o.findElement(By.xpath("./ancestor-or-self::a")))
                 .collect(Collectors.toList());
-
-        System.out.println("Размер массива : " + this.coursesList);
-        System.out.println("Значение первого элемента : " + this.coursesList.get(0));
     }
 
     private LocalDate parseDateToLocaleDate(String text) {

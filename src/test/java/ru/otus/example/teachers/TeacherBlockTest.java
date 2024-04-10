@@ -33,14 +33,6 @@ public class TeacherBlockTest {
                 .getItemWithTextParameterAndIndex(1, 1);
         blockWithItemsComponent.clickItemByName(name);
 
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
         instructorItemPage.isLoaded(name);
-        System.out.println("1");
-
     }
 }

@@ -32,6 +32,5 @@ public class CoursesPageTest {
                 .clickNeededCourse(courseName);
 
         courseItemPage.isLoaded(courseName);
-        System.out.println("1");
     }
 }

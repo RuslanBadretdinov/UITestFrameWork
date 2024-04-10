@@ -28,9 +28,22 @@ public class CoursesPageTest {
 
         coursesPage.open()
                 .isLoaded()
-                .setCoursesList()
                 .clickNeededCourse(courseName);
 
         courseItemPage.isLoaded(courseName);
+    }
+
+    @Test
+    @Tag("@scenario2a")
+    @DisplayName("Открытие страницы конкретного курса")
+    public void filterCoursesWithDateAndChec() {
+        coursesPage.open()
+                .isLoaded()
+
+                .setTheEarliestCoursesList()
+                .checkDataOfCoursesListWithDataOfCoursePageViaJSOUP()
+
+                .setTheLatestCoursesList()
+                .checkDataOfCoursesListWithDataOfCoursePageViaJSOUP();
     }
 }

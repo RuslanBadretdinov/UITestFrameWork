@@ -24,7 +24,7 @@
         <javafaker.version>1.0.2</javafaker.version>
         <asserrtj.core.version>3.25.3</asserrtj.core.version>
         <guice.version>7.0.0</guice.version>
-        <browsermob-core.version>2.1.5</browsermob-core.version>
+        <jsoup.version>1.17.2</jsoup.version>
 
         <maven.surefire.plugin.version>3.2.5</maven.surefire.plugin.version>
         <aspectjweaver.version>1.9.22</aspectjweaver.version>
@@ -82,6 +82,11 @@
             <groupId>com.google.inject</groupId>
             <artifactId>guice</artifactId>
             <version>${guice.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>${jsoup.version}</version>
         </dependency>
     </dependencies>
 

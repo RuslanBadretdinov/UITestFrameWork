@@ -35,7 +35,7 @@ public class NavMenuComponent extends AnyComponentAbs<NavMenuComponent> {
     }
 
     public String getRandomItemName() {
-        return new Faker().options().nextElement(this.itemList).getText().replaceAll("\\(\\d\\)", "").trim();
+        return new Faker().options().nextElement(this.itemList).getText().replaceAll("\\(\\d*\\)", "").trim();
     }
 
     public void clickItemByName(String blockName, String name) {

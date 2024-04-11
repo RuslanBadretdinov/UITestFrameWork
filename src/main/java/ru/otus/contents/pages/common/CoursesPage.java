@@ -2,7 +2,6 @@ package ru.otus.contents.pages.common;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.google.inject.Inject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.openqa.selenium.By;
@@ -35,7 +34,6 @@ public class CoursesPage extends AnyPageAbs<CoursesPage> {
     private WebElement coursesBlock;
     private List<WebElement> coursesList;
 
-    @Inject
     public CoursesPage(WebDriver driver) {
         super(driver);
     }

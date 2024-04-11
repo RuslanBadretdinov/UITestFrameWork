@@ -11,7 +11,7 @@ import ru.otus.contents.pages.dynamics.InstructorItemPage;
 import ru.otus.extensions.UIExtension;
 
 @ExtendWith(UIExtension.class)
-@Tag("@exampleSetTests")
+@Tag("@homeWork1")
 @DisplayName("Набор тестов со страницей преподавателя")
 public class TeacherBlockTest {
 

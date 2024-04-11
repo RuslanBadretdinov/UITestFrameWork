@@ -1,6 +1,5 @@
 package ru.otus.contents.pages.dynamics;
 
-import com.google.inject.Inject;
 import org.openqa.selenium.WebDriver;
 import ru.otus.annotations.PageValidation;
 import ru.otus.annotations.UrlPrefix;
@@ -11,10 +10,8 @@ import ru.otus.contents.pages.common.CoursesPage;
 @PageValidation("template:xpath://div[@class = 'ReactCollapse--content']//div[@value = 'true']//label[text() = '%s']")
 public class CoursesDynamicVersionPage extends AnyPageWithDynamicAnnotationAbs<CoursesPage> {
 
-    @Inject
     private CoursesPage coursesPage;
 
-    @Inject
     public CoursesDynamicVersionPage(WebDriver driver) {
         super(driver);
     }

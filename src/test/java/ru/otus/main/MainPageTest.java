@@ -12,7 +12,7 @@ import ru.otus.contents.pages.dynamics.CoursesDynamicVersionPage;
 import ru.otus.extensions.UIExtension;
 
 @ExtendWith(UIExtension.class)
-@Tag("@mainPageTests")
+@Tag("@homeWork1")
 @DisplayName("Набор тестов - взаимодействие из главной страницей")
 public class MainPageTest {
 

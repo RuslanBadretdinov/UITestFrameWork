@@ -17,7 +17,7 @@
         <!-- Java version -->
         <java.version>11</java.version>
 
-        <junit.version>5.10.2</junit.version>
+        <junit.jupiter.engine.version>5.10.2</junit.jupiter.engine.version>
         <junit.platform.suite.engine.version>1.10.2</junit.platform.suite.engine.version>
         <selenium.java.version>4.19.1</selenium.java.version>
         <webdrivermanager.version>5.8.0</webdrivermanager.version>
@@ -50,8 +50,8 @@
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>${junit.version}</version>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.jupiter.engine.version}</version>
         </dependency>
         <dependency>
             <groupId>org.junit.platform</groupId>

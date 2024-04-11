@@ -23,7 +23,7 @@ public class CoursesPage extends AnyPageAbs<CoursesPage> {
 
     private final String hrefXpath = "./.";
     private final String nameXpath = ".//h6";
-    private final String dateXpath = ".//h6/following-sibling::div//div[text()]";
+    private final String dateXpath = ".//h6/following-sibling::div//div[text() and not(contains(text(),'О дате старта'))]";
     private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter
             .ofPattern("dd MMMM, yyyy", new Locale("ru"));
 

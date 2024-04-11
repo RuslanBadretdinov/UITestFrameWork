@@ -6,7 +6,7 @@ import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.BeforeEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.openqa.selenium.WebDriver;
-import ru.otus.modules.GuiceDriverModule;
+import ru.otus.modules.GuiceModule;
 
 public class UIExtension implements BeforeEachCallback, AfterEachCallback {
 
@@ -14,10 +14,8 @@ public class UIExtension implements BeforeEachCallback, AfterEachCallback {
 
     @Override
     public void beforeEach(ExtensionContext extensionContext) throws Exception {
-        injector = Guice.createInjector(new GuiceDriverModule());
-
-        extensionContext.getTestInstance()
-                .ifPresent(instance -> injector.injectMembers(instance));
+        injector = Guice.createInjector(new GuiceModule());
+        extensionContext.getTestInstance().ifPresent(instance -> injector.injectMembers(instance));
     }
 
     @Override

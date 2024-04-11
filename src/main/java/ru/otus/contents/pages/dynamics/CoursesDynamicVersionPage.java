@@ -16,6 +16,11 @@ public class CoursesDynamicVersionPage extends AnyPageWithDynamicAnnotationAbs<C
         super(driver);
     }
 
+    public CoursesDynamicVersionPage(WebDriver driver, CoursesPage coursesPage) {
+        super(driver);
+        this.coursesPage = coursesPage;
+    }
+
     @Override
     public CoursesPage isLoaded() {
         return coursesPage.isLoaded();

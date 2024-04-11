@@ -1,7 +1,6 @@
 package ru.otus.contents.components.mainpage;
 
 import com.github.javafaker.Faker;
-import com.google.inject.Inject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import ru.otus.annotations.Component;
@@ -14,7 +13,6 @@ public class NavMenuComponent extends AnyComponentAbs<NavMenuComponent> {
     private final String hrefXpath = "./following-sibling::div[1]//a";
     private final String hrefXpathClickName = "./following-sibling::div[1]//a[contains(text(), '%s')]";
 
-    @Inject
     public NavMenuComponent(WebDriver driver) {
         super(driver);
     }

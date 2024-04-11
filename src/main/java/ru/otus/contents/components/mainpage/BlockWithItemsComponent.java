@@ -1,6 +1,5 @@
 package ru.otus.contents.components.mainpage;
 
-import com.google.inject.Inject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import ru.otus.annotations.Component;
@@ -11,7 +10,6 @@ public class BlockWithItemsComponent extends AnyComponentAbs<BlockWithItemsCompo
 
     private final String hrefXpath = ".//a[./div]";
 
-    @Inject
     public BlockWithItemsComponent(WebDriver driver) {
         super(driver);
     }

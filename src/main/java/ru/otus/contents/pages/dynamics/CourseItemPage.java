@@ -20,7 +20,7 @@ public class CourseItemPage extends AnyPageWithDynamicAnnotationAbs<CourseItemPa
     }
 
     public CourseItemPage open(String prefixName) {
-        driver.get((getBaseUrl() + getUrlPrefix().replace("{prefixName}", prefixName)));
+        this.driver.get((getBaseUrl() + getUrlPrefix().replace("{prefixName}", prefixName)));
         return this;
     }
 }

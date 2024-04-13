@@ -29,14 +29,13 @@ public abstract class AnyComponentAbs<T> extends CommonActions<T> {
             if (this.incomingValueForAnnotation.isEmpty()) return null;
 
             value = String.format(value, this.incomingValueForAnnotation);
-            return this.getPageComponentUtil()
-                    .defineLocatorTypeByAnnotationValue(value);
+            return this.pageComponentUtil.defineLocatorTypeByAnnotationValue(value);
         }
         return null;
     }
 
     public T chooseNeededBlockAndMoveToThis(String blockName) {
-        this.getActions().moveToElement(getComponentEntity(blockName)).build().perform();
+        this.actions.moveToElement(getComponentEntity(blockName)).build().perform();
         return (T) this;
     }
 

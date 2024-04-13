@@ -23,7 +23,7 @@ public class BlockWithItemsComponent extends AnyComponentAbs<BlockWithItemsCompo
     }
 
     public BlockWithItemsComponent setItemList() {
-        this.itemList = waiter.waitForElementsVisible(getComponentEntity(this.incomingValueForAnnotation)
+        this.itemList = this.waiter.waitForElementsVisible(getComponentEntity(this.incomingValueForAnnotation)
                 .findElements(By.xpath(hrefXpath)));
         return this;
     }

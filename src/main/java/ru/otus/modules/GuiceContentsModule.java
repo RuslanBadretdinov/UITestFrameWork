@@ -1,6 +1,7 @@
 package ru.otus.modules;
 
 import com.google.inject.AbstractModule;
+import com.google.inject.Inject;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
 import org.openqa.selenium.WebDriver;
@@ -11,31 +12,28 @@ import ru.otus.contents.pages.common.MainPage;
 import ru.otus.contents.pages.dynamics.CourseItemPage;
 import ru.otus.contents.pages.dynamics.CoursesDynamicVersionPage;
 import ru.otus.contents.pages.dynamics.InstructorItemPage;
-import ru.otus.factory.DriverFactory;
 
-public class GuiceModule extends AbstractModule {
-    private final WebDriver driver = new DriverFactory().getDriver();
+public class GuiceContentsModule extends AbstractModule {
 
-    private final CoursesPage coursesPage = new CoursesPage(driver);
+    @Inject
+    private WebDriver driver;
 
     @Provides
-    public WebDriver getDriver() {
-        return driver;
+    @Singleton
+    public BlockWithItemsComponent getBlockWithItemsComponent() {
+        return new BlockWithItemsComponent(driver);
     }
 
     @Provides
-    public CoursesPage getCoursesPage() { return this.coursesPage; }
+    @Singleton
+    public NavMenuComponent getNavMenuComponent() {
+        return new NavMenuComponent(driver);
+    }
 
     @Provides
     @Singleton
     public CoursesDynamicVersionPage getCoursesDynamicVersionPage() {
-        return new CoursesDynamicVersionPage(driver, coursesPage);
-    }
-
-    @Provides
-    @Singleton
-    public MainPage getMainPage() {
-        return new MainPage(driver);
+        return new CoursesDynamicVersionPage(driver);
     }
 
     @Provides
@@ -52,13 +50,11 @@ public class GuiceModule extends AbstractModule {
 
     @Provides
     @Singleton
-    public BlockWithItemsComponent getBlockWithItemsComponent() {
-        return new BlockWithItemsComponent(driver);
-    }
+    public CoursesPage getCoursesPage() { return new CoursesPage(driver); }
 
     @Provides
     @Singleton
-    public NavMenuComponent getNavMenuComponent() {
-        return new NavMenuComponent(driver);
+    public MainPage getMainPage() {
+        return new MainPage(driver);
     }
 }

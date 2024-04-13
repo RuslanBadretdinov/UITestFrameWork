@@ -27,7 +27,7 @@ public abstract class AnyPageWithDynamicAnnotationAbs<T> extends AnyPageAbs<T> {
         String pageIsNotLoadedText = String.format("Страница '%s' не загружена, "
                         + "или локатор маркера не присутствует на странице",
                 this.getClass().getSimpleName());
-        assertThat(getWaiter().waitForByElementPresence(dynamicPageValidationBy))
+        assertThat(this.waiter.waitForByElementPresence(dynamicPageValidationBy))
                 .as(pageIsNotLoadedText)
                 .isTrue();
         super.isLoaded($(dynamicPageValidationBy));
@@ -54,6 +54,6 @@ public abstract class AnyPageWithDynamicAnnotationAbs<T> extends AnyPageAbs<T> {
     private By getPageLocator(String locatorTypeAndLocator) {
         if (locatorTypeAndLocator.isEmpty()) return null;
         locatorTypeAndLocator = String.format(locatorTypeAndLocator, this.incomingValueForAnnotation);
-        return this.getPageComponentUtil().defineLocatorTypeByAnnotationValue(locatorTypeAndLocator);
+        return this.pageComponentUtil.defineLocatorTypeByAnnotationValue(locatorTypeAndLocator);
     }
 }

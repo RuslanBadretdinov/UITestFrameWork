@@ -107,7 +107,7 @@ public class CoursesPage extends AnyPageAbs<CoursesPage> {
     }
 
     public void clickNeededCourse(String courseName) {
-        coursesBlock.findElements(By.xpath(nameXpath))
+        this.coursesBlock.findElements(By.xpath(nameXpath))
                 .stream()
                 .filter(element -> element.getAttribute("innerText").equals(courseName))
                 .findFirst()

@@ -19,7 +19,7 @@ public class NavMenuComponent extends AnyComponentAbs<NavMenuComponent> {
 
     @Override
     public NavMenuComponent setItemList() {
-        this.itemList = waiter.waitForElementsVisible(getComponentEntity(this.incomingValueForAnnotation)
+        this.itemList = this.waiter.waitForElementsVisible(getComponentEntity(this.incomingValueForAnnotation)
                 .findElements(By.xpath(hrefXpath)));
         return this;
     }
@@ -37,7 +37,7 @@ public class NavMenuComponent extends AnyComponentAbs<NavMenuComponent> {
 
     public void clickItemByName(String blockName, String name) {
         chooseNeededBlockAndMoveToThis(blockName);
-        waiter.waitVisibleElementAndReturn(
+        this.waiter.waitVisibleElementAndReturn(
                 getComponentEntity(blockName).findElement(By.xpath(String.format(hrefXpathClickName, name)))
         ).click();
     }

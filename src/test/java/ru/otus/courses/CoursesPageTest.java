@@ -24,7 +24,7 @@ public class CoursesPageTest {
     @Tag("@scenario1")
     @DisplayName("Открытие страницы конкретного курса")
     public void openDefiniteCoursePage() {
-        String courseName = "Управление рисками в IT";
+        String courseName = "Scala-разработчик";
 
         coursesPage.open()
                 .isLoaded()

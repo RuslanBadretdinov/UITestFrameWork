@@ -19,7 +19,7 @@ public class InstructorItemPage extends AnyPageWithDynamicAnnotationAbs<Instruct
     }
 
     public InstructorItemPage open(String id) {
-        driver.get((getBaseUrl() + getUrlPrefix().replace("{id}", id)));
+        this.driver.get((getBaseUrl() + getUrlPrefix().replace("{id}", id)));
         return this;
     }
 }

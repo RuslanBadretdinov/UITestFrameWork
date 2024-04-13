@@ -1,7 +1,7 @@
 # UITestFrameWork
 autotests with JUnit5, Selenium 4 without Cucumber
 
---Строка запуска : clean test -P prod -DtestTag=@openRandomTeacherPage
+--Строка запуска : clean test -P prod -DtestTag=@homeWork1
 
 
 --Итоговое задание:

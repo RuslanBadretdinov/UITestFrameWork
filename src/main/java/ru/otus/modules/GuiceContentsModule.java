@@ -50,7 +50,9 @@ public class GuiceContentsModule extends AbstractModule {
 
     @Provides
     @Singleton
-    public CoursesPage getCoursesPage() { return new CoursesPage(driver); }
+    public CoursesPage getCoursesPage() {
+        return new CoursesPage(driver);
+    }
 
     @Provides
     @Singleton

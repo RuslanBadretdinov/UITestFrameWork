@@ -38,10 +38,7 @@ public class UIExtension implements BeforeEachCallback, AfterEachCallback {
         extensionContext.getTestInstance().ifPresent(instance -> {
             Arrays.stream(instance.getClass().getDeclaredFields())
                     .map(f -> f.getType())
-                    .forEach(c -> {
-                                fullInjector.injectMembers(fullInjector.getProvider(c).get());
-                            }
-                    );
+                    .forEach(c -> fullInjector.injectMembers(fullInjector.getProvider(c).get()));
         });
     }
 

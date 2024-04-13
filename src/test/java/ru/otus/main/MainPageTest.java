@@ -37,6 +37,14 @@ public class MainPageTest {
                 .getRandomItemName();
 
         navMenuComponent.clickItemByName(name);
-        coursesDynamicVersionPage.isLoaded();
+
+        coursesDynamicVersionPage.setTitleOfItemPage(name)
+                .isLoaded()
+        // С этим DI я уже устал, многие вещи, которые, я думал, что будут работать, не работают.
+        // Пример перехода с "динамической" страницы на базовую страницу CoursesPage, в которой весь функционал
+                .getCoursesPage()
+                .isLoaded();
+        // or
+        coursesDynamicVersionPage.isLoaded(name);
     }
 }

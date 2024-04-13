@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import ru.otus.annotations.PageValidation;
 
 public abstract class AnyPageWithDynamicAnnotationAbs<T> extends AnyPageAbs<T> {
-    private String incomingValueForAnnotation;
+    protected String incomingValueForAnnotation;
     private By dynamicPageValidationBy;
 
     public AnyPageWithDynamicAnnotationAbs(WebDriver driver) {
@@ -34,9 +34,10 @@ public abstract class AnyPageWithDynamicAnnotationAbs<T> extends AnyPageAbs<T> {
         return (T) this;
     }
 
-    public void setTitleOfItemPage(String titleOfItemPage) {
+    public T setTitleOfItemPage(String titleOfItemPage) {
         this.incomingValueForAnnotation = titleOfItemPage;
         this.dynamicPageValidationBy = getDynamicPageValidationBy();
+        return (T) this;
     }
 
     private By getDynamicPageValidationBy() {

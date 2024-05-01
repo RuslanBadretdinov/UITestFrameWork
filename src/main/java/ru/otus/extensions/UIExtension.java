@@ -2,9 +2,7 @@ package ru.otus.extensions;
 
 import com.google.inject.Module;
 import com.google.inject.*;
-import org.junit.jupiter.api.extension.AfterEachCallback;
-import org.junit.jupiter.api.extension.BeforeEachCallback;
-import org.junit.jupiter.api.extension.ExtensionContext;
+import org.junit.jupiter.api.extension.*;
 import org.openqa.selenium.WebDriver;
 import ru.otus.modules.GuiceContentsModule;
 import ru.otus.modules.GuiceDriverModule;
@@ -14,7 +12,7 @@ import java.lang.reflect.Field;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class UIExtension implements BeforeEachCallback, AfterEachCallback {
+public class UIExtension implements BeforeEachCallback, AfterEachCallback, TestWatcher {
 
     @Inject
     private WebDriver driver;
@@ -50,6 +48,20 @@ public class UIExtension implements BeforeEachCallback, AfterEachCallback {
                         driver.quit();
                     }
                 });
+    }
+
+    @Override
+    public void testFailed(ExtensionContext context, Throwable cause) {
+        getScreenshot();
+        quit();
+        TestWatcher.super.testFailed(context, cause);
+    }
+
+    private void getScreenshot() {
+    }
+
+    private void quit() {
+        if (driver != null) driver.quit();
     }
 
     private void injectDriverToModules(Injector driverInjector, Module... modules) {

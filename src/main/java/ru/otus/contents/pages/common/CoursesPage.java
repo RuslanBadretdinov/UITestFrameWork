@@ -69,7 +69,7 @@ public class CoursesPage extends AnyPageAbs<CoursesPage> {
 
                     assertThat(
                             coursePage.selectXpath("//section//div[contains(@class, 'galmep')]/div/div[1]//p "
-                                            + "| //p[contains(text(), 'Начало занятий')]/../../..//p[contains(@class, 'item-text')]")
+                                            + "| //p[contains(text(), 'Начало занятий')]/ancestor::div[contains(@class, 'content-item container')]//p[contains(@class, 'item-text')]")
                                     .stream()
                                     .map(element -> element.text().trim())
                                     .anyMatch(x -> this.parseDateToLocaleDate(x + ", 2024").equals(elDate))

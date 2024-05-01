@@ -27,7 +27,6 @@
         <jsoup.version>1.17.2</jsoup.version>
 
         <maven.surefire.plugin.version>3.2.5</maven.surefire.plugin.version>
-        <aspectjweaver.version>1.9.22</aspectjweaver.version>
 
         <maven.compiler.plugin.version>3.13.0</maven.compiler.plugin.version>
         <maven.compiler.source.version>${java.version}</maven.compiler.source.version>
@@ -127,18 +126,10 @@
                     <includes>**/*Test.java</includes>
                     <argLine>
                         -Dfile.encoding=${encoding.type}
-                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectjweaver.version}/aspectjweaver-${aspectjweaver.version}.jar"
                     </argLine>
 
                     <groups>${testTag}</groups>
                 </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.aspectj</groupId>
-                        <artifactId>aspectjweaver</artifactId>
-                        <version>${aspectjweaver.version}</version>
-                    </dependency>
-                </dependencies>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

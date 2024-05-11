@@ -6,21 +6,21 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
+import ru.otus.scenario_scoped.GuiceScenarioScoped;
 import ru.otus.utils.fromdriver.waiters.Waiter;
 
 
 public class CommonActions<T> {
 
     protected WebDriver driver;
-    @Inject
     protected Waiter waiter;
-    @Inject
     protected Actions actions;
-    @Inject
-    protected PageComponentUtil pageComponentUtil;
 
-    public CommonActions(WebDriver driver) {
-        this.driver = driver;
+    @Inject
+    public CommonActions(GuiceScenarioScoped guiceScenarioScoped) {
+        this.driver = guiceScenarioScoped.getDriver();
+        this.waiter = guiceScenarioScoped.getWaiter();
+        this.actions = guiceScenarioScoped.getActions();
         PageFactory.initElements(driver, this);
     }
 

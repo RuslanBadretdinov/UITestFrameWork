@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class PageComponentUtil {
 
-    public By defineLocatorTypeByAnnotationValue(String annotationValue) throws IllegalArgumentException {
+    public static By defineLocatorTypeByAnnotationValue(String annotationValue) throws IllegalArgumentException {
         String searchStrategy = "";
 
         Pattern pattern = Pattern.compile("^(\\w+):.*?");

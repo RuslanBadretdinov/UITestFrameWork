@@ -2,18 +2,18 @@ package ru.otus.contents.pages.abstracts;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.google.inject.Inject;
 import org.apache.commons.lang3.StringUtils;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.otus.annotations.UrlPrefix;
+import ru.otus.scenario_scoped.GuiceScenarioScoped;
 import ru.otus.utils.fromdriver.CommonActions;
 
 
 public abstract class AnyPageAbs<T> extends CommonActions<T> {
 
-    public AnyPageAbs(WebDriver driver) {
-        super(driver);
-    }
+    @Inject
+    public AnyPageAbs(GuiceScenarioScoped guiceScenarioScoped) { super(guiceScenarioScoped); }
 
     public T open() {
         driver.get(getBaseUrl() + getUrlPrefix());

@@ -1,19 +1,21 @@
 package ru.otus.contents.components.abstracts;
 
+import com.google.inject.Inject;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.otus.annotations.Component;
+import ru.otus.scenario_scoped.GuiceScenarioScoped;
 import ru.otus.utils.fromdriver.CommonActions;
+import ru.otus.utils.fromdriver.PageComponentUtil;
+
 import java.util.List;
 
 public abstract class AnyComponentAbs<T> extends CommonActions<T> {
     protected String incomingValueForAnnotation;
     protected List<WebElement> itemList;
 
-    public AnyComponentAbs(WebDriver driver) {
-        super(driver);
-    }
+    @Inject
+    public AnyComponentAbs(GuiceScenarioScoped guiceScenarioScoped) { super(guiceScenarioScoped); }
 
     protected WebElement getComponentEntity(String incomingValueForAnnotation) {
         this.addValueForAnnotation(incomingValueForAnnotation);
@@ -29,7 +31,7 @@ public abstract class AnyComponentAbs<T> extends CommonActions<T> {
             if (this.incomingValueForAnnotation.isEmpty()) return null;
 
             value = String.format(value, this.incomingValueForAnnotation);
-            return this.pageComponentUtil.defineLocatorTypeByAnnotationValue(value);
+            return PageComponentUtil.defineLocatorTypeByAnnotationValue(value);
         }
         return null;
     }

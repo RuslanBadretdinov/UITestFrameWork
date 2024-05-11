@@ -2,17 +2,18 @@ package ru.otus.contents.pages.abstracts;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.google.inject.Inject;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import ru.otus.annotations.PageValidation;
+import ru.otus.scenario_scoped.GuiceScenarioScoped;
+import ru.otus.utils.fromdriver.PageComponentUtil;
 
 public abstract class AnyPageWithDynamicAnnotationAbs<T> extends AnyPageAbs<T> {
     protected String incomingValueForAnnotation;
     private By dynamicPageValidationBy;
 
-    public AnyPageWithDynamicAnnotationAbs(WebDriver driver) {
-        super(driver);
-    }
+    @Inject
+    public AnyPageWithDynamicAnnotationAbs(GuiceScenarioScoped guiceScenarioScoped) { super(guiceScenarioScoped); }
 
     @Override
     public T isLoaded() {
@@ -55,6 +56,6 @@ public abstract class AnyPageWithDynamicAnnotationAbs<T> extends AnyPageAbs<T> {
     private By getPageLocator(String locatorTypeAndLocator) {
         if (locatorTypeAndLocator.isEmpty()) return null;
         locatorTypeAndLocator = String.format(locatorTypeAndLocator, this.incomingValueForAnnotation);
-        return this.pageComponentUtil.defineLocatorTypeByAnnotationValue(locatorTypeAndLocator);
+        return PageComponentUtil.defineLocatorTypeByAnnotationValue(locatorTypeAndLocator);
     }
 }

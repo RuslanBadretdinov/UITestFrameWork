@@ -1,18 +1,18 @@
 package ru.otus.contents.pages.dynamics;
 
-import org.openqa.selenium.WebDriver;
+import com.google.inject.Inject;
 import ru.otus.annotations.PageValidation;
 import ru.otus.annotations.UrlPrefix;
 import ru.otus.contents.pages.abstracts.AnyPageWithDynamicAnnotationAbs;
 import ru.otus.exceptions.UrlIsNeededParametersException;
+import ru.otus.scenario_scoped.GuiceScenarioScoped;
 
 @UrlPrefix("/lessons/{prefixName}/")
 @PageValidation("template:xpath://h1[text()='%s']")
 public class CourseItemPage extends AnyPageWithDynamicAnnotationAbs<CourseItemPage> {
 
-    public CourseItemPage(WebDriver driver) {
-        super(driver);
-    }
+    @Inject
+    public CourseItemPage(GuiceScenarioScoped guiceScenarioScoped) { super(guiceScenarioScoped); }
 
     @Override
     public CourseItemPage open() {

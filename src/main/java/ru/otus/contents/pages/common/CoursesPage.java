@@ -2,14 +2,16 @@ package ru.otus.contents.pages.common;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.google.inject.Inject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.otus.annotations.UrlPrefix;
 import ru.otus.contents.pages.abstracts.AnyPageAbs;
+import ru.otus.scenario_scoped.GuiceScenarioScoped;
+
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -34,9 +36,8 @@ public class CoursesPage extends AnyPageAbs<CoursesPage> {
     private WebElement coursesBlock;
     private List<WebElement> coursesList;
 
-    public CoursesPage(WebDriver driver) {
-        super(driver);
-    }
+    @Inject
+    public CoursesPage(GuiceScenarioScoped guiceScenarioScoped) { super(guiceScenarioScoped); }
 
     @Override
     public CoursesPage isLoaded() {

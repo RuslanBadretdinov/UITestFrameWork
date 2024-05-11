@@ -1,22 +1,19 @@
 package ru.otus.contents.pages.dynamics;
 
 import com.google.inject.Inject;
-import org.openqa.selenium.WebDriver;
 import ru.otus.annotations.PageValidation;
 import ru.otus.annotations.UrlPrefix;
+import ru.otus.contents.pages.PageLibrary;
 import ru.otus.contents.pages.abstracts.AnyPageWithDynamicAnnotationAbs;
 import ru.otus.contents.pages.common.CoursesPage;
+import ru.otus.scenario_scoped.GuiceScenarioScoped;
 
 @UrlPrefix("/catalog/courses?categories={category}")
 @PageValidation("template:xpath://div[@class = 'ReactCollapse--content']//div[@value = 'true']//label[text() = '%s']")
 public class CoursesDynamicVersionPage extends AnyPageWithDynamicAnnotationAbs<CoursesDynamicVersionPage> {
 
     @Inject
-    private CoursesPage coursesPage;
-
-    public CoursesDynamicVersionPage(WebDriver driver) {
-        super(driver);
-    }
+    public CoursesDynamicVersionPage(GuiceScenarioScoped guiceScenarioScoped) { super(guiceScenarioScoped); }
 
     @Override
     public CoursesDynamicVersionPage isLoaded() {
@@ -30,7 +27,7 @@ public class CoursesDynamicVersionPage extends AnyPageWithDynamicAnnotationAbs<C
 
     public CoursesPage open(String category) {
         this.driver.get((getBaseUrl() + getUrlPrefix().replace("{category}", category)));
-        return coursesPage;
+        return PageLibrary.getInstance().getCoursesPage();
     }
 
     /**
@@ -38,6 +35,6 @@ public class CoursesDynamicVersionPage extends AnyPageWithDynamicAnnotationAbs<C
      * @return
      */
     public CoursesPage getCoursesPage() {
-        return coursesPage;
+        return PageLibrary.getInstance().getCoursesPage();
     }
 }

@@ -1,18 +1,18 @@
 package ru.otus.contents.components.mainpage;
 
+import com.google.inject.Inject;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import ru.otus.annotations.Component;
 import ru.otus.contents.components.abstracts.AnyComponentAbs;
+import ru.otus.scenario_scoped.GuiceScenarioScoped;
 
 @Component("xpath://section[.//*[text()='%s']]")
 public class BlockWithItemsComponent extends AnyComponentAbs<BlockWithItemsComponent> {
 
     private final String hrefXpath = ".//a[./div]";
 
-    public BlockWithItemsComponent(WebDriver driver) {
-        super(driver);
-    }
+    @Inject
+    public BlockWithItemsComponent(GuiceScenarioScoped guiceScenarioScoped) { super(guiceScenarioScoped); }
 
     public void clickItemByName(String name) {
         this.clickItemByName(this.incomingValueForAnnotation, name);

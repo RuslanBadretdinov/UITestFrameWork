@@ -5,10 +5,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 import com.google.inject.Inject;
 import org.openqa.selenium.By;
 import ru.otus.annotations.PageValidation;
+import ru.otus.contents.pages.IDynamicPage;
 import ru.otus.scenario_scoped.GuiceScenarioScoped;
 import ru.otus.utils.fromdriver.PageComponentUtil;
 
-public abstract class AnyPageWithDynamicAnnotationAbs<T> extends AnyPageAbs<T> {
+public abstract class AnyPageWithDynamicAnnotationAbs<T> extends AnyPageAbs<T> implements IDynamicPage<T> {
     protected String incomingValueForAnnotation;
     private By dynamicPageValidationBy;
 
@@ -20,7 +21,7 @@ public abstract class AnyPageWithDynamicAnnotationAbs<T> extends AnyPageAbs<T> {
         assertThat(incomingValueForAnnotation)
                 .as("Не установлен входной параметр, который нужен для загрузки страницы")
                 .isNotEmpty();
-        return (T) this;
+        return (T) super.isLoaded($(dynamicPageValidationBy));
     }
 
     public T isLoaded(String titleOfItemPage) {
@@ -31,8 +32,7 @@ public abstract class AnyPageWithDynamicAnnotationAbs<T> extends AnyPageAbs<T> {
         assertThat(this.waiter.waitForElementVisible(dynamicPageValidationBy))
                 .as(pageIsNotLoadedText)
                 .isTrue();
-        super.isLoaded($(dynamicPageValidationBy));
-        return (T) this;
+        return super.isLoaded($(dynamicPageValidationBy));
     }
 
     public T setTitleOfItemPage(String titleOfItemPage) {

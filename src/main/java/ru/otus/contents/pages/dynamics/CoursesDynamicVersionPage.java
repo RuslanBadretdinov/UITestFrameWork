@@ -3,7 +3,6 @@ package ru.otus.contents.pages.dynamics;
 import com.google.inject.Inject;
 import ru.otus.annotations.PageValidation;
 import ru.otus.annotations.UrlPrefix;
-import ru.otus.contents.pages.PageLibrary;
 import ru.otus.contents.pages.abstracts.AnyPageWithDynamicAnnotationAbs;
 import ru.otus.contents.pages.common.CoursesPage;
 import ru.otus.scenario_scoped.GuiceScenarioScoped;
@@ -27,7 +26,7 @@ public class CoursesDynamicVersionPage extends AnyPageWithDynamicAnnotationAbs<C
 
     public CoursesPage open(String category) {
         this.driver.get((getBaseUrl() + getUrlPrefix().replace("{category}", category)));
-        return guiceScenarioScoped.getPageLibrary().getCoursesPage();
+        return (CoursesPage) guiceScenarioScoped.getPageLibrary().getPage(CoursesPage.class);
     }
 
     /**
@@ -35,6 +34,6 @@ public class CoursesDynamicVersionPage extends AnyPageWithDynamicAnnotationAbs<C
      * @return
      */
     public CoursesPage getCoursesPage() {
-        return guiceScenarioScoped.getPageLibrary().getCoursesPage();
+        return (CoursesPage) guiceScenarioScoped.getPageLibrary().getPage(CoursesPage.class);
     }
 }

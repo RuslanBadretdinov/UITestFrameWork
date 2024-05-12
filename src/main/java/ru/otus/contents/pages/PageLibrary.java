@@ -1,42 +1,41 @@
 package ru.otus.contents.pages;
 
-import com.google.inject.Inject;
 import ru.otus.contents.pages.abstracts.AnyPageAbs;
-import ru.otus.contents.pages.common.CoursesPage;
-import ru.otus.contents.pages.common.MainPage;
-import ru.otus.contents.pages.dynamics.CourseItemPage;
-import ru.otus.contents.pages.dynamics.CoursesDynamicVersionPage;
-import ru.otus.contents.pages.dynamics.InstructorItemPage;
 
-import java.util.HashMap;
 import java.util.Map;
+
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class PageLibrary {
 
-    @Inject
-    private MainPage mainPage;
-    @Inject
-    private CoursesPage coursesPage;
-    @Inject
-    private CourseItemPage courseItemPage;
-    @Inject
-    private CoursesDynamicVersionPage coursesDynamicVersionPage;
-    @Inject
-    private InstructorItemPage instructorItemPage;
+    private Map<String, IPage<? extends AnyPageAbs<?>>> iPageMap;
 
-    private Map<String, IPage<? extends AnyPageAbs<?>>> pageMap = new HashMap<>() {{
-        put("Главная страница", mainPage);
-    }};
+    public PageLibrary(Map<String, IPage<? extends AnyPageAbs<?>>> iPageMap) {
+        this.iPageMap = iPageMap;
+    }
 
-    public Map<String, IPage<? extends AnyPageAbs<?>>> getPageMap() {
-        return pageMap;
+    public IPage<? extends AnyPageAbs<?>> getPage(String pageName) {
+        if (iPageMap.containsKey(pageName)) {
+            return iPageMap.get(pageName);
+        }
+        String failMessage = String.format("страница '%s' не опознана из feature файла", pageName);
+        fail(failMessage);
+        throw new IllegalArgumentException(failMessage);
     }
 
     /**
      * Исключение - нужно добавить объект в инжектируемый объет, пришлось сделать так
+     *
      * @return
      */
-    public CoursesPage getCoursesPage() {
-        return coursesPage;
+    public IPage<? extends AnyPageAbs<?>> getPage(Class<?> clazz) {
+        for(Map.Entry<String, IPage<? extends AnyPageAbs<?>>> entry: iPageMap.entrySet()) {
+            if (entry.getValue().getClass() == clazz) {
+                return entry.getValue();
+            }
+        }
+        String failMessage = String.format("страница по имени класса '%s' не опознана", clazz.getSimpleName());
+        fail(failMessage);
+        throw new IllegalArgumentException(failMessage);
     }
 }

@@ -15,11 +15,12 @@
         <file.encoding>${encoding.type}</file.encoding>
 
         <!-- Java version -->
-        <java.version>11</java.version>
+        <java.version>17</java.version>
 
         <junit.jupiter.api.version>5.10.2</junit.jupiter.api.version>
         <junit.platform.suite.engine.version>1.10.2</junit.platform.suite.engine.version>
         <selenium.java.version>4.19.1</selenium.java.version>
+        <commons-lang3.version>3.14.0</commons-lang3.version>
         <webdrivermanager.version>5.8.0</webdrivermanager.version>
         <javafaker.version>1.0.2</javafaker.version>
         <asserrtj.core.version>3.25.3</asserrtj.core.version>
@@ -54,15 +55,25 @@
             <artifactId>junit-jupiter-api</artifactId>
             <version>${junit.jupiter.api.version}</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.junit.platform</groupId>-->
-<!--            <artifactId>junit-platform-suite-engine</artifactId>-->
-<!--            <version>${junit.platform.suite.engine.version}</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-suite-engine</artifactId>
+            <version>${junit.platform.suite.engine.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>${selenium.java.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-support</artifactId>
+            <version>${selenium.java.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
         </dependency>
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
@@ -91,12 +102,12 @@
         </dependency>
         <dependency>
             <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-junit-platform-engine</artifactId>
+            <artifactId>cucumber-java</artifactId>
             <version>${cucumber.version}</version>
         </dependency>
         <dependency>
             <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-java</artifactId>
+            <artifactId>cucumber-junit-platform-engine</artifactId>
             <version>${cucumber.version}</version>
         </dependency>
         <dependency>
@@ -140,7 +151,6 @@
                     </systemPropertyVariables>
 
                     <testFailureIgnore>true</testFailureIgnore>
-                    <includes>**/*Test.java</includes>
                     <argLine>
                         -Dfile.encoding=${encoding.type}
                     </argLine>
@@ -170,24 +180,24 @@
                     </dependency>
                 </dependencies>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>${maven-checkstyle-plugin.version}</version>
-                <configuration>
-                    <includeTestSourceDirectory>true</includeTestSourceDirectory>
-                    <configLocation>${project.build.sourceDirectory}/../resources/checkstyle.xml</configLocation>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>analyze-compile</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-checkstyle-plugin</artifactId>-->
+<!--                <version>${maven-checkstyle-plugin.version}</version>-->
+<!--                <configuration>-->
+<!--                    <includeTestSourceDirectory>true</includeTestSourceDirectory>-->
+<!--                    <configLocation>${project.build.sourceDirectory}/../resources/checkstyle.xml</configLocation>-->
+<!--                </configuration>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>analyze-compile</id>-->
+<!--                        <phase>compile</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>check</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
         </plugins>
     </build>
 

@@ -1,10 +1,13 @@
-# UITestFrameWork
-autotests with JUnit5, Selenium 4 without Cucumber
+# UITestFrameWorkWithCucumber
+autotests with JUnit5, Selenium 4, Cucumber 7
 
---Строка запуска : clean test -P prod -DtestTag=@homeWork1
+На текущий момент не смог запустить по тегам. Снизу предположительная строка запуска по тегам
+--Строка запуска : clean test -P prod -Dcucumber.options="--tags @homeWork2"
 
 
 --Итоговое задание:
+Адаптировать сценарии на BDD c использованием Cucumber
+
 
 Сценарий 1:
 Открываем страницу каталога курсов https://otus.ru/catalog/courses

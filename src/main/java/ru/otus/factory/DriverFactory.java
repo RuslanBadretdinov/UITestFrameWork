@@ -12,7 +12,7 @@ import ru.otus.listeners.ActionsListener;
 import java.util.Locale;
 
 public class DriverFactory implements IDriverFactory {
-    private final String browserName = System.getProperty("browser.name").toLowerCase(Locale.ROOT);
+    private final String browserName = System.getProperty("browser.name", "chrome").toLowerCase(Locale.ROOT);
 
     @Override
     public WebDriver getDriver() {

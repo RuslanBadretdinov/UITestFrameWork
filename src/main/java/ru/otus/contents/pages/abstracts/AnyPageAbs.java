@@ -31,7 +31,7 @@ public abstract class AnyPageAbs<T> extends CommonActions<T> implements IPage<T>
     }
 
     protected String getBaseUrl() {
-        return StringUtils.stripEnd(System.getProperty("base.url"), "/");
+        return StringUtils.stripEnd(System.getProperty("base.url", "http://otus.ru"), "/");
     }
 
     protected String getUrlPrefix() {

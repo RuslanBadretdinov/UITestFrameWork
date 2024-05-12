@@ -2,8 +2,9 @@
 autotests with JUnit5, Selenium 4, Cucumber 7
 
 Строки запуска по тегам (пришлось помучиться):
+-- mvn clean -P prod -Dgroups=homeWork2 test (запускает нужные тесты с тегом - важно не вписывать тег без '@')
+
 -- mvn clean compile -P prod -Dcucumber.filter.tags=@scenario1 test (функция @Disabled (skip))
--- mvn clean -P prod -Dgroups=scenario1 test (запускает нужные тесты с тегом - важно не вписывать тег без '@')
 -- mvn clean -P prod -DexcludedGroups="Ignore" -Dgroups=scenario1 test (другой пример работы с тегами)
 
 Информация по запуску:

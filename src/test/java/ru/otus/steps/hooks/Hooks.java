@@ -3,6 +3,11 @@ package ru.otus.steps.hooks;
 import com.google.inject.Inject;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import ru.otus.contents.components.ComponentLibrary;
+import ru.otus.contents.components.IComponent;
+import ru.otus.contents.components.abstracts.AnyComponentAbs;
+import ru.otus.contents.components.mainpage.BlockWithItemsComponent;
+import ru.otus.contents.components.mainpage.NavMenuComponent;
 import ru.otus.contents.pages.IPage;
 import ru.otus.contents.pages.PageLibrary;
 import ru.otus.contents.pages.abstracts.AnyPageAbs;
@@ -32,9 +37,15 @@ public class Hooks {
     @Inject
     private InstructorItemPage instructorItemPage;
 
+    @Inject
+    private BlockWithItemsComponent blockWithItemsComponent;
+    @Inject
+    private NavMenuComponent navMenuComponent;
+
     @Before
     public void before() {
         guiceScenarioScoped.setPageLibrary(new PageLibrary(createIPageMap()));
+        guiceScenarioScoped.setComponentLibrary(new ComponentLibrary(createIComponentMap()));
     }
 
     @After
@@ -47,11 +58,18 @@ public class Hooks {
 
     private Map<String, IPage<? extends AnyPageAbs<?>>> createIPageMap() {
         return new HashMap<>() {{
-            put("CoursesPage", coursesPage);
+            put("Каталог курсов", coursesPage);
             put("Главная страница", mainPage);
-            put("CourseItemPage", courseItemPage);
-            put("CoursesDynamicVersionPage", coursesDynamicVersionPage);
-            put("InstructorItemPage", instructorItemPage);
+            put("Страница курса", courseItemPage);
+            put("Динамическая версия страницы каталога курсов", coursesDynamicVersionPage);
+            put("Страница инструктора", instructorItemPage);
+        }};
+    }
+
+    private Map<String, IComponent<? extends AnyComponentAbs<?>>> createIComponentMap() {
+        return new HashMap<>() {{
+            put("Меню преподавателей", blockWithItemsComponent);
+            put("Навигационное меню", navMenuComponent);
         }};
     }
 }

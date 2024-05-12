@@ -4,13 +4,14 @@ import com.google.inject.Inject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import ru.otus.annotations.Component;
+import ru.otus.contents.components.IComponent;
 import ru.otus.scenario_scoped.GuiceScenarioScoped;
 import ru.otus.utils.fromdriver.CommonActions;
 import ru.otus.utils.fromdriver.PageComponentUtil;
 
 import java.util.List;
 
-public abstract class AnyComponentAbs<T> extends CommonActions<T> {
+public abstract class AnyComponentAbs<T> extends CommonActions<T> implements IComponent<T> {
     protected String incomingValueForAnnotation;
     protected List<WebElement> itemList;
 
@@ -43,6 +44,7 @@ public abstract class AnyComponentAbs<T> extends CommonActions<T> {
 
     public abstract T setItemList();
 
+    public abstract void clickItemByName(String blockName, String name);
 
     public T chooseNeededBlockAndSetItemList(String blockName) {
         chooseNeededBlockAndMoveToThis(blockName);

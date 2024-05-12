@@ -22,6 +22,7 @@ public class BlockWithItemsComponent extends AnyComponentAbs<BlockWithItemsCompo
         getComponentEntity(blockName).findElement(By.xpath(String.format(".//*[./div[text()='%s']]", name))).click();
     }
 
+    @Override
     public BlockWithItemsComponent setItemList() {
         this.itemList = this.waiter.waitForElementsVisible(getComponentEntity(this.incomingValueForAnnotation)
                 .findElements(By.xpath(hrefXpath)));

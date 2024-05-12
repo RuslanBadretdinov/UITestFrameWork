@@ -1,4 +1,4 @@
-package ru.otus.steps.contents.pages;
+package ru.otus.steps.pages;
 
 import com.google.inject.Inject;
 import io.cucumber.java.ru.Когда;
@@ -18,7 +18,7 @@ public class AllPageSteps {
         guiceScenarioScoped.getPageLibrary().getPage(pageName).open().isLoaded();
     }
 
-    @Когда("^открыта по URL '(.*)'$")
+    @Когда("^открыта страница по URL '(.*)'$")
     public void openViaURL(String pageName) {
         guiceScenarioScoped.getPageLibrary().getPage(pageName).open();
     }
@@ -36,10 +36,7 @@ public class AllPageSteps {
             String failMessage = String.format("это страница '%s' не динамическая", pageName);
             fail(failMessage);
         }
-        dynamicPage.isLoaded(evalText(title));
-    }
-
-    private String evalText(String text) {
-        return guiceScenarioScoped.getVariablesUtil().evalText(text);
+        title = guiceScenarioScoped.getVariablesUtil().evalText(title);
+        dynamicPage.isLoaded(title);
     }
 }

@@ -1,9 +1,13 @@
 # UITestFrameWorkWithCucumber
 autotests with JUnit5, Selenium 4, Cucumber 7
 
-На текущий момент не смог запустить по тегам. Снизу предположительная строка запуска по тегам
---Строка запуска : clean test -P prod -Dcucumber.options="--tags @homeWork2"
+Строки запуска по тегам (пришлось помучиться):
+-- mvn clean compile -P prod -Dcucumber.filter.tags=@scenario1 test (функция @Disabled (skip))
+-- mvn clean -P prod -Dgroups=scenario1 test (запускает нужные тесты с тегом - важно не вписывать тег без '@')
+-- mvn clean -P prod -DexcludedGroups="Ignore" -Dgroups=scenario1 test (другой пример работы с тегами)
 
+Информация по запуску:
+https://github.com/cucumber/cucumber-jvm/blob/main/cucumber-junit-platform-engine/README.md
 
 --Итоговое задание:
 Адаптировать сценарии на BDD c использованием Cucumber

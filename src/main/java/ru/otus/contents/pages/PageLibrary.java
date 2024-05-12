@@ -13,8 +13,6 @@ import java.util.Map;
 
 public class PageLibrary {
 
-    private static PageLibrary INSTANCE;
-
     @Inject
     private MainPage mainPage;
     @Inject
@@ -26,16 +24,12 @@ public class PageLibrary {
     @Inject
     private InstructorItemPage instructorItemPage;
 
-    private Map<String, ? extends AnyPageAbs<?>> pageMap = new HashMap<>() {{
+    private Map<String, IPage<? extends AnyPageAbs<?>>> pageMap = new HashMap<>() {{
         put("Главная страница", mainPage);
     }};
 
-    private PageLibrary() {
-    }
-
-    public static PageLibrary getInstance() {
-        if (INSTANCE == null) { INSTANCE = new PageLibrary(); }
-        return INSTANCE;
+    public Map<String, IPage<? extends AnyPageAbs<?>>> getPageMap() {
+        return pageMap;
     }
 
     /**

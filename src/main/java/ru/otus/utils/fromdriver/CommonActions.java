@@ -11,13 +11,14 @@ import ru.otus.utils.fromdriver.waiters.Waiter;
 
 
 public class CommonActions<T> {
-
+    protected GuiceScenarioScoped guiceScenarioScoped;
     protected WebDriver driver;
     protected Waiter waiter;
     protected Actions actions;
 
     @Inject
     public CommonActions(GuiceScenarioScoped guiceScenarioScoped) {
+        this.guiceScenarioScoped = guiceScenarioScoped;
         this.driver = guiceScenarioScoped.getDriver();
         this.waiter = guiceScenarioScoped.getWaiter();
         this.actions = guiceScenarioScoped.getActions();

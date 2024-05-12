@@ -27,7 +27,7 @@ public class CoursesDynamicVersionPage extends AnyPageWithDynamicAnnotationAbs<C
 
     public CoursesPage open(String category) {
         this.driver.get((getBaseUrl() + getUrlPrefix().replace("{category}", category)));
-        return PageLibrary.getInstance().getCoursesPage();
+        return guiceScenarioScoped.getPageLibrary().getCoursesPage();
     }
 
     /**
@@ -35,6 +35,6 @@ public class CoursesDynamicVersionPage extends AnyPageWithDynamicAnnotationAbs<C
      * @return
      */
     public CoursesPage getCoursesPage() {
-        return PageLibrary.getInstance().getCoursesPage();
+        return guiceScenarioScoped.getPageLibrary().getCoursesPage();
     }
 }

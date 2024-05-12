@@ -6,11 +6,12 @@ import com.google.inject.Inject;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebElement;
 import ru.otus.annotations.UrlPrefix;
+import ru.otus.contents.pages.IPage;
 import ru.otus.scenario_scoped.GuiceScenarioScoped;
 import ru.otus.utils.fromdriver.CommonActions;
 
 
-public abstract class AnyPageAbs<T> extends CommonActions<T> {
+public abstract class AnyPageAbs<T> extends CommonActions<T> implements IPage<T> {
 
     @Inject
     public AnyPageAbs(GuiceScenarioScoped guiceScenarioScoped) { super(guiceScenarioScoped); }

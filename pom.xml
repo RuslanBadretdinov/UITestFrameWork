@@ -150,6 +150,10 @@
                         <browser.version>${browser.version}</browser.version>
                     </systemPropertyVariables>
 
+                    <includes>
+                        <include>**/features/**.java</include>
+                    </includes>
+
                     <testFailureIgnore>true</testFailureIgnore>
                     <argLine>
                         -Dfile.encoding=${encoding.type}

@@ -10,22 +10,23 @@ public class NavMenuComponentSteps {
     @Inject
     private GuiceScenarioScoped guiceScenarioScoped;
 
-    @Inject
-    private NavMenuComponent navMenuComponent;
+    private NavMenuComponent getNavMenuComponent() {
+        return (NavMenuComponent) guiceScenarioScoped.getComponentLibrary().getComponent(NavMenuComponent.class);
+    }
 
-    @Когда("^в навигационном меню отфильтрованы элементы содержащие ссылку на курс '(.*)'$")
+    @Когда("^в навигационном меню отфильтрованы пункты содержащие ссылку на курс '(.*)'$")
     public void resetItemListViaLinkContainsPath(String href) {
-        navMenuComponent.resetItemListViaLinkContainsPath(href);
+        getNavMenuComponent().resetItemListViaLinkContainsPath(href);
     }
 
     @Когда("^в навигационном меню в переменной '(.*)' сохранено название случайного курса$")
     public void getRandomItemName(String varName) {
-        guiceScenarioScoped.getVariablesUtil().setVarWithValue(varName, navMenuComponent.getRandomItemName());
+        guiceScenarioScoped.getVariablesUtil().setVarWithValue(varName, getNavMenuComponent().getRandomItemName());
     }
 
     @Когда("^в навигационном меню нажат пункт '(.*)'$")
     public void clickItemByName(String itemName) {
         itemName = guiceScenarioScoped.getVariablesUtil().evalText(itemName);
-        navMenuComponent.clickItemByName(itemName);
+        getNavMenuComponent().clickItemByName(itemName);
     }
 }

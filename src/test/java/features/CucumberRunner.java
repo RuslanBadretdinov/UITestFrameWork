@@ -1,4 +1,4 @@
-package ru.otus;
+package features;
 
 import org.junit.platform.suite.api.ConfigurationParameter;
 import org.junit.platform.suite.api.SelectPackages;

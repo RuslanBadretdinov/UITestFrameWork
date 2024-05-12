@@ -10,12 +10,13 @@ public class BlockWithItemsComponentSteps {
     @Inject
     private GuiceScenarioScoped guiceScenarioScoped;
 
-    @Inject
-    private BlockWithItemsComponent blockWithItemsComponent;
+    private BlockWithItemsComponent getBlockWithItemsComponent() {
+        return (BlockWithItemsComponent) guiceScenarioScoped.getComponentLibrary().getComponent(BlockWithItemsComponent.class);
+    }
 
     @Когда("^в меню преподавателей нажат пункт '(.*)'$")
     public void clickItemByName(String itemName) {
         itemName = guiceScenarioScoped.getVariablesUtil().evalText(itemName);
-        blockWithItemsComponent.clickItemByName(itemName);
+        getBlockWithItemsComponent().clickItemByName(itemName);
     }
 }

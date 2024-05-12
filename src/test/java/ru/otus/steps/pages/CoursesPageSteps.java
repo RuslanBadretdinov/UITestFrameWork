@@ -9,27 +9,29 @@ public class CoursesPageSteps {
 
     @Inject
     private GuiceScenarioScoped guiceScenarioScoped;
-    @Inject
-    private CoursesPage coursesPage;
+
+    private CoursesPage getCoursesPage() {
+        return (CoursesPage) guiceScenarioScoped.getPageLibrary().getPage(CoursesPage.class);
+    }
 
     @Когда("^на странице каталога курсов клик по курсу '(.*)'$")
     public void clickItemByName(String itemName) {
         itemName = guiceScenarioScoped.getVariablesUtil().evalText(itemName);
-        coursesPage.clickNeededCourse(itemName);
+        getCoursesPage().clickNeededCourse(itemName);
     }
 
     @Когда("^на странице каталога курсов сверяется список самых '(ранних|поздних)' курсов в страницах этих курсов с помощью JSOP$")
     public void checkEarliestOrLatestDataOfCoursesListWithDataOfCoursePageViaJSOUP(String earliestOrLatest) {
         switch (earliestOrLatest) {
             case "ранних": {
-                coursesPage.setTheEarliestCoursesList();
+                getCoursesPage().setTheEarliestCoursesList();
                 break;
             }
             case "поздних": {
-                coursesPage.setTheLatestCoursesList();
+                getCoursesPage().setTheLatestCoursesList();
                 break;
             }
         }
-        coursesPage.checkDataOfCoursesListWithDataOfCoursePageViaJSOUP();
+        getCoursesPage().checkDataOfCoursesListWithDataOfCoursePageViaJSOUP();
     }
 }

@@ -27,10 +27,10 @@ public class VariablesUtil {
         Matcher matcher = pattern.matcher(text);
         List<String> varList = new ArrayList<>();
         while (matcher.find()) {
-            varList.add(matcher.group());
+            varList.add(matcher.group().substring(2, matcher.group().length() - 1));
         }
         for (String var : varList) {
-            text = text.replaceAll(var, varMap.get(var));
+            text = text.replaceAll("#\\{" + var + "\\}", varMap.get(setRegexMask(var)));
         }
         return text;
     }

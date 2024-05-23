@@ -12,13 +12,14 @@ import ru.otus.listeners.ActionsListener;
 import java.util.Locale;
 
 public class DriverFactory implements IDriverFactory {
-    private final String browserName = System.getProperty("browser.name", "chrome").toLowerCase(Locale.ROOT);
+    private final String browserName = System.getProperty("browser.name").toLowerCase(Locale.ROOT);
+    private final String browserVersion = System.getProperty("browser.version").toLowerCase(Locale.ROOT);
 
     @Override
     public WebDriver getDriver() {
         switch (this.browserName) {
             case "chrome": {
-                WebDriverManager.chromiumdriver().setup();
+                WebDriverManager.chromiumdriver().browserVersion(browserVersion).setup();
                 IDriver<ChromeOptions> browserSettings = new ChromeWebDriver();
                 return new EventFiringDecorator<>(new ActionsListener())
                         .decorate(new ChromeDriver(browserSettings.getDriverOptions()));

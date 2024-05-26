@@ -10,7 +10,7 @@ import ru.otus.contents.pages.dynamics.CourseItemPage;
 import ru.otus.extensions.UIExtension;
 
 @ExtendWith(UIExtension.class)
-@Tag("@homeWork1")
+@Tag("@homework1")
 @DisplayName("Набор тестов - взаимодействие из каталога курсов")
 public class CoursesPageTest {
 

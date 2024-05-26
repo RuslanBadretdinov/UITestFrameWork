@@ -1,6 +1,6 @@
 #language: ru
 
-@homeWork2
+@homework2
 Функционал: Набор тестов - взаимодействие из главной страницей
 
   @scenario3
